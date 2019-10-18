@@ -1,21 +1,36 @@
-import React from "react"
-import { Link } from "gatsby"
-
-import Layout from "../components/layout"
-import Image from "../components/image"
+import React, { useRef, useEffect } from "react"
+import Particles from "react-particles-js"
+import LazyLinePainter from "lazy-painter"
 import SEO from "../components/seo"
+import particles from "json/particles.json"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+import Isologo from "svg/isologo.svg"
+
+import "scss/index.scss"
+
+const IndexPage = () => {
+  useEffect(() => {
+    // TODO replace for TweenMax
+    let el = document.querySelector("#eye")
+    let myAnimation = new LazyLinePainter(el, {
+      ease: "easeLinear",
+      strokeWidth: 19.2,
+      strokeOpacity: 1,
+      strokeColor: "#f2f2f2",
+      strokeCap: "square",
+    })
+    myAnimation.paint()
+  }, [])
+
+  return (
+    <>
+      <SEO title="Home" />
+      <div id="home">
+        <Particles params={particles} className="fullscreen-particles" />
+        <Isologo id="eye" />
+      </div>
+    </>
+  )
+}
 
 export default IndexPage

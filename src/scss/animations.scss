@@ -1,0 +1,16 @@
+@keyframes revealPath {
+  from {
+    fill-opacity: 0;
+  }
+
+  to {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes eyeToTop {
+  to {
+    transform: scale(0.2) translateY(-150%);
+    opacity: 0.6;
+  }
+}
