@@ -69,3 +69,4 @@ yarn-error.log
 .yarn-integrity
 
 outer-assets
+!/src/node_modules
