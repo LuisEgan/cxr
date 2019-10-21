@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import * as THREE from "three";
 import GLTFLoader from "three-gltf-loader";
 import OrbitControls from "three-orbitcontrols";
@@ -9,7 +10,8 @@ const THREEScene = props => {
   const mount = useRef();
   const [loadError, setLoadError] = useState({});
 
-  const { id } = props;
+  const { id, starsRotationSpeed } = props;
+  console.log("starsRotationSpeed: ", starsRotationSpeed);
 
   let camera,
     renderer,
@@ -150,11 +152,15 @@ const THREEScene = props => {
         star.acceleration = 0.001;
         starGeo.vertices.push(star);
       }
-      const sprite = new THREE.TextureLoader().load("png/Particle Star.png");
+      const sprite = new THREE.TextureLoader().load(
+        "png/Particle Round With Glow.png"
+      );
       const starMaterial = new THREE.PointsMaterial({
         color: 0xe6e6e6,
-        size: Math.floor(Math.random() * Math.floor(50)) + 5,
+        size: Math.floor(Math.random() * Math.floor(40)) + 5,
         map: sprite,
+        fog: false,
+        transparent: true
       });
 
       stars = new THREE.Points(starGeo, starMaterial);
@@ -190,20 +196,20 @@ const THREEScene = props => {
     starGeo.vertices.forEach(p => {
       // p.velocity += p.acceleration;
       // p.x -= p.velocity;
-
       // if (p.x < -1000) {
       //   p.x = 1000;
       //   p.velocity = 0;
       // }
     });
     starGeo.verticesNeedUpdate = true;
-    stars.rotation.x += 0.0002;
+    stars.rotation.x += starsRotationSpeed;
   };
 
   const animate = () => {
     renderer.render(scene, camera);
     frameId = window.requestAnimationFrame(animate);
 
+    console.log("starsRotationSpeed: ", starsRotationSpeed);
     animateStarsWarp();
 
     const delta = clock.getDelta();
@@ -371,6 +377,15 @@ const THREEScene = props => {
   };
 
   return <div id={id} ref={mount} className="fullscreen-canvas" />;
+};
+
+THREEScene.propTypes = {
+  id: PropTypes.string,
+  starsRotationSpeed: PropTypes.number,
+};
+
+THREEScene.defaultProps = {
+  starsRotationSpeed: 0.0002,
 };
 
 export default THREEScene;

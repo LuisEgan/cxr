@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Particles from "react-particles-js";
 import LazyLinePainter from "lazy-painter";
 import SEO from "common/seo";
@@ -8,6 +8,7 @@ import Isologo from "svg/isologo.svg";
 
 import "scss/index.scss";
 import THREEScene from "../components/THREEScene";
+import { routes } from "utils";
 
 const IndexPage = () => {
   // useEffect(() => {
@@ -23,17 +24,34 @@ const IndexPage = () => {
   //   myAnimation.paint();
   // }, []);
 
+  const [view, setView] = useState(routes.home);
+  const [starsRotationSpeed, setStarsRotationSpeed] = useState(0.0002);
+
+  const updateView = view => {
+    setView(view);
+    setStarsRotationSpeed(0.02);
+
+    setTimeout(() => {
+      setStarsRotationSpeed(0.0002);
+      console.log("DONE!");
+    }, 500);
+  };
+
   return (
     <div className="fadeIn">
       <SEO title="Home" />
       <div id="home">
         {/* <Particles params={particles} className="fullscreen-canvas" /> */}
-        <THREEScene id="3d-scene"/>
-        <Isologo id="eye" />
+        <THREEScene id="3d-scene" starsRotationSpeed={starsRotationSpeed} />
+        <Isologo id="eye" className={view !== routes.home ? "eyeToTop" : ""} />
 
         <div id="xrButton-container">
-          <div className="xrButton">AR</div>
-          <div className="xrButton">VR</div>
+          <div className="xrButton" onClick={() => updateView(routes.ar)}>
+            AR
+          </div>
+          <div className="xrButton" onClick={() => updateView(routes.vr)}>
+            VR
+          </div>
         </div>
       </div>
     </div>

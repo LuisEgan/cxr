@@ -10,9 +10,13 @@
 
 @keyframes eyeToTop {
   to {
-    transform: scale(0.2) translateY(-150%);
-    opacity: 0.6;
+    transform: scale(0.5);
+    top: 3%;
   }
+}
+.eyeToTop {
+  animation: eyeToTop 2s linear;
+  animation-fill-mode: forwards;
 }
 
 @keyframes fadeIn {
