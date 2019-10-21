@@ -29,7 +29,7 @@ const THREEScene = props => {
       threeSetup();
       start();
       // loadOBJ("models/fbx/phone.fbx");
-      loadFBX("models/fbx/phone.fbx");
+      // loadFBX("models/fbx/phone.fbx");
     }
     return () => {
       stop();

@@ -5,6 +5,8 @@ import SEO from "common/seo";
 import particles from "json/particles.json";
 
 import Isologo from "svg/isologo.svg";
+import Smartphone from "svg/smartphone.svg";
+import VR from "svg/vr.svg";
 
 import "scss/index.scss";
 import THREEScene from "../components/THREEScene";
@@ -47,10 +49,10 @@ const IndexPage = () => {
 
         <div id="xrButton-container">
           <div className="xrButton" onClick={() => updateView(routes.ar)}>
-            AR
+            <Smartphone />
           </div>
           <div className="xrButton" onClick={() => updateView(routes.vr)}>
-            VR
+            <VR />
           </div>
         </div>
       </div>

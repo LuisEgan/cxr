@@ -1,4 +1,4 @@
-const config = require("./config")
+const config = require("./config");
 
 module.exports = {
   siteMetadata: {
@@ -28,7 +28,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `${__dirname}/static/png/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `${__dirname}/static/png/isologo.png`, // This path is relative to the root of the site.
       },
     },
     {
@@ -48,13 +48,13 @@ module.exports = {
       },
     },
     {
-			resolve: 'gatsby-plugin-react-svg',
-			options: {
-				rule: {
-					include: /svg/,
-				},
-			},
-		},
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /svg/,
+        },
+      },
+    },
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
@@ -63,4 +63,4 @@ module.exports = {
       },
     },
   ],
-}
+};
