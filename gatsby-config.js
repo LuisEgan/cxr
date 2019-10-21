@@ -36,6 +36,7 @@ module.exports = {
       options: {
         alias: {
           config: `${__dirname}/config.js`,
+          common: `${__dirname}/src/components/.common`,
           jpg: `${__dirname}/static/jpg`,
           json: `${__dirname}/static/json`,
           models: `${__dirname}/static/models`,

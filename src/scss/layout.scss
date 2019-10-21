@@ -4,9 +4,11 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
+  background-color: #000;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 
   &::-webkit-scrollbar {
     width: 0;
