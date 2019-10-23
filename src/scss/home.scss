@@ -19,7 +19,8 @@
   path {
     fill-opacity: 1;
     fill-opacity: 0;
-    animation: revealPath 3s linear 2s;
+    // animation: revealPath 3s linear 2s;
+    animation: revealPath 3s linear;
     animation-fill-mode: forwards;
   }
 }

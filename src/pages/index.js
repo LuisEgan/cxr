@@ -12,7 +12,8 @@ import "scss/index.scss";
 import THREEScene from "../components/THREEScene";
 import { routes } from "utils";
 
-const IndexPage = () => {
+const IndexPage = props => {
+  const { navigate } = props;
   // useEffect(() => {
   //   // TODO replace for TweenMax
   //   let el = document.querySelector("#eye");
@@ -27,24 +28,23 @@ const IndexPage = () => {
   // }, []);
 
   const [view, setView] = useState(routes.home);
-  const [starsRotationSpeed, setStarsRotationSpeed] = useState(0.0002);
+  const [fadeClass, setFadeClass] = useState("fadeIn");
 
   const updateView = view => {
     setView(view);
-    setStarsRotationSpeed(0.02);
+    setFadeClass("fadeOut");
 
     setTimeout(() => {
-      setStarsRotationSpeed(0.0002);
-      console.log("DONE!");
-    }, 500);
+      navigate("/page-2");
+    }, 2500);
   };
 
   return (
-    <div className="fadeIn">
+    <div className={fadeClass}>
       <SEO title="Home" />
       <div id="home">
         {/* <Particles params={particles} className="fullscreen-canvas" /> */}
-        <THREEScene id="3d-scene" starsRotationSpeed={starsRotationSpeed} />
+        <THREEScene id="3d-scene" />
         <Isologo id="eye" className={view !== routes.home ? "eyeToTop" : ""} />
 
         <div id="xrButton-container">

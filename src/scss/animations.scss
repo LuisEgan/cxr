@@ -32,3 +32,17 @@
 .fadeIn {
   animation: fadeIn 2s linear forwards;
 }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 2s linear forwards;
+}

@@ -11,7 +11,6 @@ const THREEScene = props => {
   const [loadError, setLoadError] = useState({});
 
   const { id, starsRotationSpeed } = props;
-  console.log("starsRotationSpeed: ", starsRotationSpeed);
 
   let camera,
     renderer,
@@ -104,7 +103,7 @@ const THREEScene = props => {
       );
       mesh.rotation.x = -Math.PI / 2;
       mesh.receiveShadow = true;
-      // scene.add(mesh);
+      scene.add(mesh);
     };
 
     const _setGrid = () => {
@@ -160,7 +159,7 @@ const THREEScene = props => {
         size: Math.floor(Math.random() * Math.floor(40)) + 5,
         map: sprite,
         fog: false,
-        transparent: true
+        transparent: true,
       });
 
       stars = new THREE.Points(starGeo, starMaterial);
@@ -171,8 +170,8 @@ const THREEScene = props => {
     _setCamera();
     _setRenderer();
     _setControls();
-    _setLight();
-    _setGround();
+    // _setLight();
+    // _setGround();
     // _setGrid();
     // _setSkybox();
     _setSpaceWarp();
@@ -209,7 +208,6 @@ const THREEScene = props => {
     renderer.render(scene, camera);
     frameId = window.requestAnimationFrame(animate);
 
-    console.log("starsRotationSpeed: ", starsRotationSpeed);
     animateStarsWarp();
 
     const delta = clock.getDelta();
