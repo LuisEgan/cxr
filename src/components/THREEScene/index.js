@@ -171,10 +171,10 @@ const THREEScene = props => {
     _setRenderer();
     _setControls();
     // _setLight();
-    // _setGround();
-    // _setGrid();
-    // _setSkybox();
-    _setSpaceWarp();
+    _setGround();
+    _setGrid();
+    _setSkybox();
+    // _setSpaceWarp();
 
     clock = new THREE.Clock();
 
@@ -208,7 +208,7 @@ const THREEScene = props => {
     renderer.render(scene, camera);
     frameId = window.requestAnimationFrame(animate);
 
-    animateStarsWarp();
+    // animateStarsWarp();
 
     const delta = clock.getDelta();
     if (mixer) {
