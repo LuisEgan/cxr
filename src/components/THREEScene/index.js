@@ -208,7 +208,7 @@ const THREEScene = props => {
     renderer.render(scene, camera);
     frameId = window.requestAnimationFrame(animate);
 
-    animateStarsWarp();
+    // animateStarsWarp();
 
     const delta = clock.getDelta();
     if (mixer) {
