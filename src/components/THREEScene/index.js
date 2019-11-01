@@ -117,12 +117,12 @@ const THREEScene = props => {
       let materialArray = [];
 
       const src = "jpg/skybox/";
-      const texture_ft = new THREE.TextureLoader().load(`${src}arid2_ft.jpg`);
-      const texture_bk = new THREE.TextureLoader().load(`${src}arid2_bk.jpg`);
-      const texture_up = new THREE.TextureLoader().load(`${src}arid2_up.jpg`);
-      const texture_dn = new THREE.TextureLoader().load(`${src}arid2_dn.jpg`);
-      const texture_rt = new THREE.TextureLoader().load(`${src}arid2_rt.jpg`);
-      const texture_lf = new THREE.TextureLoader().load(`${src}arid2_lf.jpg`);
+      const texture_ft = new THREE.TextureLoader().load(`${src}frontImage.png`);
+      const texture_bk = new THREE.TextureLoader().load(`${src}backImage.png`);
+      const texture_up = new THREE.TextureLoader().load(`${src}upImage.png`);
+      const texture_dn = new THREE.TextureLoader().load(`${src}downImage.png`);
+      const texture_rt = new THREE.TextureLoader().load(`${src}rightImage.png`);
+      const texture_lf = new THREE.TextureLoader().load(`${src}leftImage.png`);
 
       materialArray.push(new THREE.MeshBasicMaterial({ map: texture_ft }));
       materialArray.push(new THREE.MeshBasicMaterial({ map: texture_bk }));
@@ -173,7 +173,7 @@ const THREEScene = props => {
     // _setLight();
     // _setGround();
     // _setGrid();
-    // _setSkybox();
+    _setSkybox();
     _setSpaceWarp();
 
     clock = new THREE.Clock();
