@@ -8,4 +8,29 @@
   left: 0;
   height: 100%;
   width: 100%;
+
+  .fullscreen-canvas-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gold;
+  }
+}
+
+.fullscreen-loading {
+  font-size: 5em;
+  color: gold;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
 }

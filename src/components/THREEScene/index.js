@@ -5,12 +5,15 @@ import GLTFLoader from "three-gltf-loader";
 import OrbitControls from "three-orbitcontrols";
 import { FBXLoader } from "./three.modules/FBXLoader";
 import { OBJLoader } from "./three.modules/OBJLoader";
+import { Interaction } from "three.interaction";
 
 const THREEScene = props => {
   const mount = useRef();
   const [loadError, setLoadError] = useState({});
+  const [arLoading, setArLoading] = useState(true);
+  const [vrLoading, setVrLoading] = useState(true);
 
-  const { id, starsRotationSpeed } = props;
+  const { id, style, starsRotationSpeed, setLoading, updateView } = props;
 
   let camera,
     renderer,
@@ -18,23 +21,66 @@ const THREEScene = props => {
     controls,
     clock,
     frameId,
-    mixer,
     starGeo,
     stars,
+    raycaster,
+    mouse,
+    interaction,
     cameraOriginalPos;
+
+  let mixer = [];
+
+  // ***********************
+  // * INITIAL SETUP
+  // ***********************
 
   useEffect(() => {
     if (mount.current) {
       threeSetup();
       start();
-      // loadOBJ("models/fbx/phone.fbx");
-      // loadFBX("models/fbx/phone.fbx");
+      // setEventListeners();
+
+      const arPos = { x: 550, y: 250, z: 600 };
+      const arScale = { x: 15, y: 15, z: 15 };
+      loadFBX({
+        source: "models/fbx/planeta_ar.fbx",
+        pos: arPos,
+        name: "ar",
+        scale: arScale,
+        onLoad: () => setArLoading(false),
+      });
+
+      const vrPos = { x: -500, y: 150, z: 600 };
+      const vrScale = { x: 2, y: 2, z: 2 };
+      loadFBX({
+        source: "models/fbx/SambaDancing.fbx",
+        pos: vrPos,
+        name: "vr",
+        scale: vrScale,
+        onLoad: () => setVrLoading(false),
+      });
     }
+
     return () => {
       stop();
       mount.current && mount.current.removeChild(renderer.domElement);
+      unsetEventListeners();
     };
   }, [mount]);
+
+  // ***********************
+  // * LOADING FEEDBACK
+  // ***********************
+
+  useEffect(() => {
+    if (!arLoading && !vrLoading) {
+      setLoading(false);
+    }
+  }, [arLoading, vrLoading]);
+
+  // ***********************
+  // EVENT LISTENERS
+  // ***********************
 
   const onWindowResize = () => {
     const width = window.innerWidth;
@@ -45,6 +91,56 @@ const THREEScene = props => {
 
     renderer && renderer.setSize(width, height);
   };
+
+  const checkIntersection = () => {
+    raycaster.setFromCamera(mouse, camera);
+    return raycaster.intersectObjects([scene], true);
+  };
+
+  const onObjectHover = e => {
+    e.stopImmediatePropagation();
+    const intersects = checkIntersection();
+
+    if (intersects.length) {
+      const intersected = intersects[0].object;
+      console.log("intersected.name: ", intersected.name);
+      if (intersected.name.includes("vr")) {
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!: ", intersected);
+        // Change previous intersected to original material (if there's a previous)
+        if (intersected) {
+          intersected.material = intersected.currentMaterial;
+        }
+        // Store new intersected
+        intersected = intersected;
+        intersected.currentMaterial = intersected.material;
+
+        const material = new THREE.MeshBasicMaterial({
+          color: "#FF0000",
+        });
+        intersected.material = material;
+      }
+    }
+  };
+
+  const setEventListeners = () => {
+    if (window) {
+      window.addEventListener("resize", onWindowResize, false);
+      window.addEventListener("mousemove", onObjectHover);
+      window.addEventListener("touchmove", onObjectHover);
+    }
+  };
+
+  const unsetEventListeners = () => {
+    if (window) {
+      window.removeEventListener("resize", onWindowResize, false);
+      window.removeEventListener("mousemove", onObjectHover);
+      window.removeEventListener("touchmove", onObjectHover);
+    }
+  };
+
+  // ***********************
+  // THREE
+  // ***********************
 
   const threeSetup = () => {
     const width = mount.current.clientWidth;
@@ -170,15 +266,16 @@ const THREEScene = props => {
     _setCamera();
     _setRenderer();
     _setControls();
-    // _setLight();
+    _setLight();
     // _setGround();
     // _setGrid();
     _setSkybox();
     _setSpaceWarp();
 
     clock = new THREE.Clock();
-
-    window.addEventListener("resize", onWindowResize, false);
+    raycaster = new THREE.Raycaster();
+    mouse = new THREE.Vector2();
+    interaction = new Interaction(renderer, scene, camera);
   };
 
   const start = () => {
@@ -208,11 +305,11 @@ const THREEScene = props => {
     renderer.render(scene, camera);
     frameId = window.requestAnimationFrame(animate);
 
-    // animateStarsWarp();
+    animateStarsWarp();
 
     const delta = clock.getDelta();
-    if (mixer) {
-      mixer.update(delta);
+    if (mixer[0]) {
+      mixer.forEach(anim => anim.update(delta));
     } else {
       controls.update();
     }
@@ -225,6 +322,10 @@ const THREEScene = props => {
       }
     });
   };
+
+  // ***********************
+  // * LOADERS
+  // ***********************
 
   const loadObjectByFileType = (source, fileType) => {
     if (!fileType) return;
@@ -241,14 +342,20 @@ const THREEScene = props => {
     }
   };
 
-  const loadFBX = source => {
+  const loadFBX = ({ source, pos, name, scale, onLoad: onLoadProp }) => {
     const onLoad = object => {
-      object.name = `obj`;
-      object.position.set(0, 0, 0);
+      object.name = name;
+
+      pos = pos || { x: 0, y: 0, z: 0 };
+      object.position.set(pos.x, pos.y, pos.z);
+
+      scale = scale || { x: 1, y: 1, z: 1 };
+      object.scale.set(scale.x, scale.y, scale.z);
 
       if (object.animations[0]) {
-        mixer = new THREE.AnimationMixer(object);
-        const action = mixer.clipAction(object.animations[0]);
+        const newAnim = new THREE.AnimationMixer(object);
+        mixer.push(newAnim);
+        const action = mixer[mixer.length - 1].clipAction(object.animations[0]);
         action.play();
       }
 
@@ -259,7 +366,18 @@ const THREEScene = props => {
         }
       });
 
+      object.cursor = "pointer";
+      object.on("click", ev => {
+        console.log("ev: ", ev);
+        updateView();
+      });
+      object.on("mouseover", ev => {
+        console.log("OVER => ev: ", ev);
+      });
+
       scene.add(object);
+
+      onLoadProp(object);
       setLoadError(false);
     };
 
@@ -374,11 +492,15 @@ const THREEScene = props => {
     }
   };
 
-  return <div id={id} ref={mount} className="fullscreen-canvas" />;
+  return (
+    <div id={id} ref={mount} style={style} className="fullscreen-canvas"></div>
+  );
 };
 
 THREEScene.propTypes = {
   id: PropTypes.string,
+  style: PropTypes.object,
+  setLoading: PropTypes.func,
   starsRotationSpeed: PropTypes.number,
 };
 
