@@ -5,7 +5,7 @@ import GLTFLoader from "three-gltf-loader";
 import OrbitControls from "three-orbitcontrols";
 import { FBXLoader } from "./three.modules/FBXLoader";
 import { OBJLoader } from "./three.modules/OBJLoader";
-import { Interaction } from "three.interaction";
+import { Interaction } from "./three.modules/three.interaction";
 
 const THREEScene = props => {
   const mount = useRef();
@@ -368,12 +368,9 @@ const THREEScene = props => {
 
       object.cursor = "pointer";
       object.on("click", ev => {
-        console.log("ev: ", ev);
         updateView();
       });
-      object.on("mouseover", ev => {
-        console.log("OVER => ev: ", ev);
-      });
+      object.on("mouseover", ev => {});
 
       scene.add(object);
 
