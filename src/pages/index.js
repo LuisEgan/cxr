@@ -49,7 +49,7 @@ const IndexPage = props => {
       <div id="home">
         {/* <Particles params={particles} className="fullscreen-canvas" /> */}
 
-        <FullscreenLoading show={THREESceneLoading} />
+        <FullscreenLoading show={!isMobile && THREESceneLoading} />
 
         <THREEScene
           id="3d-scene"

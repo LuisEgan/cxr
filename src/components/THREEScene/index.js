@@ -8,11 +8,6 @@ import { OBJLoader } from "./three.modules/OBJLoader";
 import { Interaction } from "./three.modules/three.interaction";
 
 const THREEScene = props => {
-  const mount = useRef();
-  const [loadError, setLoadError] = useState({});
-  const [arLoading, setArLoading] = useState(true);
-  const [vrLoading, setVrLoading] = useState(true);
-
   const {
     id,
     style,
@@ -21,6 +16,11 @@ const THREEScene = props => {
     updateView,
     isMobile,
   } = props;
+
+  const mount = useRef();
+  const [loadError, setLoadError] = useState({});
+  const [arLoading, setArLoading] = useState(true);
+  const [vrLoading, setVrLoading] = useState(true);
 
   let camera,
     renderer,
