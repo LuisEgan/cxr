@@ -13,7 +13,14 @@ const THREEScene = props => {
   const [arLoading, setArLoading] = useState(true);
   const [vrLoading, setVrLoading] = useState(true);
 
-  const { id, style, starsRotationSpeed, setLoading, updateView } = props;
+  const {
+    id,
+    style,
+    starsRotationSpeed,
+    setLoading,
+    updateView,
+    isMobile,
+  } = props;
 
   let camera,
     renderer,
@@ -40,31 +47,33 @@ const THREEScene = props => {
       start();
       // setEventListeners();
 
-      const arPos = { x: 550, y: 250, z: 600 };
-      const arScale = { x: 15, y: 15, z: 15 };
-      loadFBX({
-        source: "models/fbx/planeta_ar.fbx",
-        pos: arPos,
-        name: "ar",
-        scale: arScale,
-        onLoad: () => setArLoading(false),
-      });
+      if (!isMobile) {
+        const arPos = { x: 550, y: 250, z: 600 };
+        const arScale = { x: 15, y: 15, z: 15 };
+        loadFBX({
+          source: "models/fbx/planeta_ar.fbx",
+          pos: arPos,
+          name: "ar",
+          scale: arScale,
+          onLoad: () => setArLoading(false),
+        });
 
-      const vrPos = { x: -500, y: 150, z: 600 };
-      const vrScale = { x: 2, y: 2, z: 2 };
-      loadFBX({
-        source: "models/fbx/SambaDancing.fbx",
-        pos: vrPos,
-        name: "vr",
-        scale: vrScale,
-        onLoad: () => setVrLoading(false),
-      });
+        const vrPos = { x: -500, y: 150, z: 600 };
+        const vrScale = { x: 2, y: 2, z: 2 };
+        loadFBX({
+          source: "models/fbx/SambaDancing.fbx",
+          pos: vrPos,
+          name: "vr",
+          scale: vrScale,
+          onLoad: () => setVrLoading(false),
+        });
+      }
     }
 
     return () => {
       stop();
       mount.current && mount.current.removeChild(renderer.domElement);
-      unsetEventListeners();
+      // unsetEventListeners();
     };
   }, [mount]);
 
