@@ -15,6 +15,7 @@ const THREEScene = props => {
     setLoading,
     updateView,
     isMobile,
+    setGlitchedText,
   } = props;
 
   const mount = useRef();
@@ -48,23 +49,23 @@ const THREEScene = props => {
       // setEventListeners();
 
       if (!isMobile) {
-        const arPos = { x: 550, y: 250, z: 600 };
-        const arScale = { x: 15, y: 15, z: 15 };
+        const planetScale = { x: 15, y: 15, z: 15 };
+
+        const arPos = { x: 500, y: 250, z: 700 };
         loadFBX({
-          source: "models/fbx/planeta_ar.fbx",
+          source: "models/fbx/planet_ar.fbx",
           pos: arPos,
           name: "ar",
-          scale: arScale,
+          scale: planetScale,
           onLoad: () => setArLoading(false),
         });
 
-        const vrPos = { x: -500, y: 150, z: 600 };
-        const vrScale = { x: 2, y: 2, z: 2 };
+        const vrPos = { x: -600, y: 100, z: 1000 };
         loadFBX({
-          source: "models/fbx/SambaDancing.fbx",
+          source: "models/fbx/planet_vr_3.fbx",
           pos: vrPos,
           name: "vr",
-          scale: vrScale,
+          scale: planetScale,
           onLoad: () => setVrLoading(false),
         });
       }
@@ -221,13 +222,13 @@ const THREEScene = props => {
     const _setSkybox = () => {
       let materialArray = [];
 
-      const src = "jpg/skybox/";
-      const texture_ft = new THREE.TextureLoader().load(`${src}frontImage.png`);
-      const texture_bk = new THREE.TextureLoader().load(`${src}backImage.png`);
-      const texture_up = new THREE.TextureLoader().load(`${src}upImage.png`);
-      const texture_dn = new THREE.TextureLoader().load(`${src}downImage.png`);
-      const texture_rt = new THREE.TextureLoader().load(`${src}rightImage.png`);
-      const texture_lf = new THREE.TextureLoader().load(`${src}leftImage.png`);
+      const src = "png/skybox/";
+      const texture_ft = new THREE.TextureLoader().load(`${src}FRONT.png`);
+      const texture_bk = new THREE.TextureLoader().load(`${src}BACK.png`);
+      const texture_up = new THREE.TextureLoader().load(`${src}TOP.png`);
+      const texture_dn = new THREE.TextureLoader().load(`${src}BOTTOM.png`);
+      const texture_rt = new THREE.TextureLoader().load(`${src}RIGHT.png`);
+      const texture_lf = new THREE.TextureLoader().load(`${src}LEFT.png`);
 
       materialArray.push(new THREE.MeshBasicMaterial({ map: texture_ft }));
       materialArray.push(new THREE.MeshBasicMaterial({ map: texture_bk }));
@@ -375,11 +376,20 @@ const THREEScene = props => {
         }
       });
 
+      // * this is to avoid updating the index's state after redirection
+      let clicked = false;
+
       object.cursor = "pointer";
       object.on("click", ev => {
-        updateView();
+        updateView(name);
+        clicked = true;
       });
-      object.on("mouseover", ev => {});
+      object.on("mouseover", ev => {
+        !clicked && setGlitchedText(name.toUpperCase());
+      });
+      object.on("mouseout", ev => {
+        !clicked && setGlitchedText("");
+      });
 
       scene.add(object);
 

@@ -13,6 +13,7 @@ import "scss/index.scss";
 import THREEScene from "../components/THREEScene";
 import { routes } from "utils";
 import FullscreenLoading from "../components/FullscreenLoading";
+import GlitchedText from "../components/GlitchedText";
 
 const IndexPage = props => {
   const { navigate } = props;
@@ -30,17 +31,16 @@ const IndexPage = props => {
   //   myAnimation.paint();
   // }, []);
 
-  const [view, setView] = useState(routes.home);
   const [fadeClass, setFadeClass] = useState("fadeIn");
   const [THREESceneLoading, setTHREESceneLoading] = useState(true);
+  const [glitchedText, setGlitchedText] = useState("");
 
   const updateView = view => {
-    setView(view);
     setFadeClass("fadeOut");
 
-    setTimeout(() => {
-      navigate("/xr");
-    }, 2500);
+    setTimeout(() => {  
+      navigate(`/${view}`);
+    }, 800);
   };
 
   return (
@@ -56,8 +56,11 @@ const IndexPage = props => {
           setLoading={setTHREESceneLoading}
           updateView={updateView}
           isMobile={isMobile}
+          setGlitchedText={setGlitchedText}
         />
-        <Isologo id="eye" className={view !== routes.home ? "eyeToTop" : ""} />
+        <Isologo id="eye" />
+
+        <GlitchedText text={glitchedText} />
 
         {isMobile && (
           <div id="xrButton-container">

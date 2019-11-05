@@ -1,3 +1,4 @@
+@import "./common.scss";
 @import "./animations.scss";
 @import "./home.scss";
 @import "./layout.scss";
@@ -33,4 +34,39 @@
   justify-content: center;
   align-items: center;
   background: black;
+}
+
+.menuItem-selected {
+  transform: scale(1.2);
+  color: red;
+
+  rect,
+  polygon,
+  path,
+  line,
+  polyline {
+    stroke: red;
+    stroke-width: 10px;
+  }
+}
+
+.clickable {
+  transition: 0.5s;
+  &:hover {
+    @extend .menuItem-selected;
+    cursor: pointer;
+  }
+}
+
+.menuItem {
+  @extend .clickable;
+  display: flex;
+  height: 10vh;
+  align-items: center;
+  font-size: 0.7em;
+  flex-flow: column;
+
+  svg {
+    height: 100%;
+  }
 }
