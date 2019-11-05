@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FCFCFC;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st2{fill:#FCFCFC;stroke:#000000;stroke-width:6;stroke-miterlimit:10;stroke-dasharray:12;}
+	.st3{fill:#FCFCFC;}
+	.st4{fill:none;stroke:#000000;stroke-width:4;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:#000000;stroke-width:4;stroke-miterlimit:10;stroke-dasharray:8.9984,8.9984;}
+</style>
+<polygon class="st0" points="101.26,245.25 101.26,416.25 358.26,416.25 358.26,245.25 229.31,114.25 "/>
+<polyline class="st1" points="103.26,246.25 228.26,304.25 356.26,246.25 "/>
+<polygon class="st0" points="134.54,260.25 134.26,141.25 316.26,141.25 316.26,264.25 228.26,304.25 "/>
+<polyline class="st2" points="249.26,59.25 206.26,252.25 413.26,188.25 "/>
+<g>
+	<g>
+		<polygon class="st3" points="251.26,191.33 251.26,153.59 289.17,164.96 289.17,202.7 		"/>
+		<path d="M253.26,156.28l33.91,10.17v33.56l-33.91-10.17V156.28 M249.26,150.9v41.91l41.91,12.57v-41.91L249.26,150.9L249.26,150.9
+			z"/>
+	</g>
+	<g>
+		<polygon class="st3" points="256.46,147.7 281.43,131.29 318.9,142.79 293.4,158.78 		"/>
+		<path d="M281.74,133.48l32.39,9.93l-21.03,13.19l-31.96-9.59L281.74,133.48 M281.12,129.11l-29.34,19.28l41.91,12.57l29.98-18.8
+			L281.12,129.11L281.12,129.11z"/>
+	</g>
+	<g>
+		<polygon class="st3" points="295.69,165.43 324.38,147.77 324.38,183.31 295.69,200.97 		"/>
+		<path d="M322.38,151.35v30.84l-24.69,15.2v-30.84L322.38,151.35 M326.38,144.19l-32.69,20.12v40.24l32.69-20.12V144.19
+			L326.38,144.19z"/>
+	</g>
+	<g>
+		<g>
+			<line class="st4" x1="252.61" y1="189.46" x2="258.03" y2="186.88"/>
+			<line class="st5" x1="266.16" y1="183.01" x2="278.34" y2="177.21"/>
+			<line class="st4" x1="282.4" y1="175.28" x2="287.82" y2="172.7"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st4" x1="295.37" y1="174.37" x2="301.21" y2="175.75"/>
+			<line class="st4" x1="318.03" y1="179.7" x2="323.87" y2="181.08"/>
+		</g>
+	</g>
+</g>
+<line class="st4" x1="103.74" y1="413.08" x2="188.74" y2="348.08"/>
+<line class="st4" x1="356.9" y1="413.02" x2="273.9" y2="348.02"/>
+</svg>
