@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
 // import { useStaticQuery, graphql } from "gatsby"
 
 // import Header from "./header"
-import "scss/index.scss"
+import "scss/index.scss";
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
@@ -17,20 +17,20 @@ const Layout = ({ children }) => {
   // `)
 
   return (
-    <>
+    <div id="layout">
       {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-      <main>{children}</main>
-      {/* <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer> */}
-    </>
-  )
-}
+      <div className="layout-side"></div>
+      <main>
+        {children}
+        <footer> © Cleverit XR </footer>
+      </main>
+      <div className="layout-side"></div>
+    </div>
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

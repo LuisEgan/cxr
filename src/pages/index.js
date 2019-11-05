@@ -39,7 +39,7 @@ const IndexPage = props => {
     setFadeClass("fadeOut");
 
     setTimeout(() => {
-      navigate("/page-2");
+      navigate("/xr");
     }, 2500);
   };
 
