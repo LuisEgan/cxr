@@ -12,6 +12,12 @@
   font-family: "Roboto" !important;
 }
 
+.cc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .fullscreen-canvas {
   position: absolute;
   top: 0;
@@ -50,5 +56,76 @@
   &:hover {
     @extend .menuItem-selected;
     cursor: pointer;
+  }
+}
+
+/********************/
+/*SECTIONS*/
+/********************/
+
+#us {
+  #us-content {
+    display: flex;
+    flex-wrap: wrap;
+
+    > div {
+      flex: 1;
+      min-width: 300px;
+
+      &:first-child {
+        padding-bottom: 5vh;
+      }
+    }
+
+    svg {
+      height: 30vh;
+      stroke: white;
+      fill: white;
+    }
+  }
+}
+
+#services {
+  #services-content {
+    display: flex;
+    flex-flow: column;
+
+    #services-diagram {
+      height: 45vh;
+      display: flex;
+
+      #diagram-center {
+        position: relative;
+        margin-left: -10vw;
+
+        svg {
+          height: 5vw;
+          position: absolute;
+          fill: white;
+
+          /* Final product: diagram's center */
+          &:nth-child(1) {
+            height: 8vw;
+            margin-left: -2vw;
+          }
+          &:nth-child(2) {
+            transform: translate(-19vw, -5vh);
+          }
+          &:nth-child(3) {
+            transform: translate(-8vw, -25vh);
+          }
+          &:nth-child(4) {
+            transform: translate(8vw, -25vh);
+          }
+          &:nth-child(5) {
+            transform: translate(19vw, -5vh);
+          }
+        }
+      }
+    }
+
+    #services-button {
+      padding-top: 5vh;
+    }
   }
 }

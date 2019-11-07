@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "gatsby";
 import { Link as ScrollLink, Element } from "react-scroll";
 
 import SEO from "common/seo";
@@ -7,12 +6,17 @@ import Menu from "../components/Sides/Menu";
 import Arrow from "../components/Sides/Arrow";
 import Button from "../components/Button";
 
+import Isologo from "svg/isologo.svg";
+
 const AR = props => {
   const { navigate } = props;
 
+  const [hiddenStyle, setHiddenStyle] = useState({});
   const [updateMenuSelect, setUpdateMenuSelect] = useState("");
+  console.log('updateMenuSelect: ', updateMenuSelect);
 
   const updateView = () => {
+    setHiddenStyle({ visibility: "hidden" });
     setTimeout(() => {
       navigate(`/vr`);
     }, 200);
@@ -38,33 +42,48 @@ const AR = props => {
 
       <Menu selected={updateMenuSelect} />
 
-      <main id="content">
-        <Element className="section" name="Nosotros">
+      <main id="content" style={hiddenStyle}>
+        <Element className="section" name="Nosotros" id="us">
           <h1>Cleverit XR</h1>
           <h3>AR</h3>
           <br />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
-            hic cupiditate suscipit dignissimos praesentium quasi at blanditiis
-            tenetur modi ut, iusto perferendis nihil earum impedit quaerat.
-            Ipsum laudantium accusamus ipsa?
-          </p>
-          <br />
-          {ContactButton("¡Únete al futuro!")}
+
+          <div id="us-content">
+            <div>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Aspernatur hic cupiditate suscipit dignissimos praesentium quasi
+                at blanditiis tenetur modi ut, iusto perferendis nihil earum
+                impedit quaerat. Ipsum laudantium accusamus ipsa?
+              </p>
+
+              {ContactButton("¡Únete al futuro!")}
+            </div>
+
+            <div className="cc">
+              <Isologo />
+            </div>
+          </div>
         </Element>
 
-        <Element className="section" name="Servicios">
-          <h1>Cleverit XR</h1>
+        <Element className="section" name="Servicios" id="services">
+          <h1>Servicios</h1>
           <h3>AR</h3>
           <br />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
-            hic cupiditate suscipit dignissimos praesentium quasi at blanditiis
-            tenetur modi ut, iusto perferendis nihil earum impedit quaerat.
-            Ipsum laudantium accusamus ipsa?
-          </p>
-          <br />
-          {ContactButton("¡Únete al futuro!")}
+
+          <div id="services-content">
+            <div id="services-diagram" className="cc">
+              <div id="diagram-center">
+                <Isologo />
+                <Isologo />
+                <Isologo />
+                <Isologo />
+                <Isologo />
+              </div>
+            </div>
+
+            <div id="services-button">{ContactButton("¡Lo quiero!")}</div>
+          </div>
         </Element>
 
         <Element className="section" name="Éxito">

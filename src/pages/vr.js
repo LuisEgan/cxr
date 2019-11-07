@@ -9,7 +9,10 @@ import Arrow from "../components/Sides/Arrow";
 const VR = props => {
   const { navigate } = props;
 
+  const [hiddenStyle, setHiddenStyle] = useState({});
+
   const updateView = () => {
+    setHiddenStyle({ visibility: "hidden" });
     setTimeout(() => {
       navigate(`/ar`);
     }, 200);
@@ -21,7 +24,7 @@ const VR = props => {
 
       <Arrow onClick={updateView} changeTo="ar" />
 
-      <main id="content">
+      <main id="content" style={hiddenStyle}>
         <Element className="section" name="Nosotros">
           <h1>VR</h1>
           <Link to="/">Go back to the homepage</Link>

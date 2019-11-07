@@ -223,12 +223,12 @@ const THREEScene = props => {
       let materialArray = [];
 
       const src = "png/skybox/";
-      const texture_ft = new THREE.TextureLoader().load(`${src}FRONT.png`);
-      const texture_bk = new THREE.TextureLoader().load(`${src}BACK.png`);
-      const texture_up = new THREE.TextureLoader().load(`${src}TOP.png`);
-      const texture_dn = new THREE.TextureLoader().load(`${src}BOTTOM.png`);
-      const texture_rt = new THREE.TextureLoader().load(`${src}RIGHT.png`);
-      const texture_lf = new THREE.TextureLoader().load(`${src}LEFT.png`);
+      const texture_ft = new THREE.TextureLoader().load(`${src}ft.png`);
+      const texture_bk = new THREE.TextureLoader().load(`${src}bk.png`);
+      const texture_up = new THREE.TextureLoader().load(`${src}tp.png`);
+      const texture_dn = new THREE.TextureLoader().load(`${src}bt.png`);
+      const texture_rt = new THREE.TextureLoader().load(`${src}rt.png`);
+      const texture_lf = new THREE.TextureLoader().load(`${src}lt.png`);
 
       materialArray.push(new THREE.MeshBasicMaterial({ map: texture_ft }));
       materialArray.push(new THREE.MeshBasicMaterial({ map: texture_bk }));
