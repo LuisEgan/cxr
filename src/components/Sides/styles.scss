@@ -1,0 +1,26 @@
+.layout-side {
+  header {
+    flex: .2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      height: 10vh;
+    }
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: column;
+  }
+
+  footer {
+    flex: .2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

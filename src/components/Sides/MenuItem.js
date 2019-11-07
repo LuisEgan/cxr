@@ -28,7 +28,6 @@ MenuItem.propTypes = {
 };
 
 MenuItem.defaultProps = {
-  starsRotationSpeed: 0.0002,
 };
 
 export default MenuItem;

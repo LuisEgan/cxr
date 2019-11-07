@@ -1,92 +1,101 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
 import { Link as ScrollLink, Element } from "react-scroll";
 
 import SEO from "common/seo";
-import MenuItem from "../components/MenuItem";
-
-import Contact from "svg/icons/contact.svg";
-import Us from "svg/icons/us.svg";
-import UseCases from "svg/icons/useCases.svg";
-import WeDo from "svg/icons/weDo.svg";
-import ChevronRight from "svg/chevronRight.svg";
-
-const menu = [
-  { icon: <Us />, title: "Nosotros" },
-  { icon: <WeDo />, title: "Servicios" },
-  { icon: <UseCases />, title: "Éxito" },
-  { icon: <Contact />, title: "Contacto" },
-];
+import Menu from "../components/Sides/Menu";
+import Arrow from "../components/Sides/Arrow";
+import Button from "../components/Button";
 
 const AR = props => {
   const { navigate } = props;
 
-  const [selected, setSelected] = useState("Nosotros");
-  const [fadeClass, setFadeClass] = useState("fadeIn");
+  const [updateMenuSelect, setUpdateMenuSelect] = useState("");
 
   const updateView = () => {
-    setFadeClass("fadeOut");
-
     setTimeout(() => {
       navigate(`/vr`);
     }, 200);
+  };
+
+  const ContactButton = text => {
+    return (
+      <ScrollLink
+        to="Contacto"
+        containerId="content"
+        smooth={true}
+        offset={-50}
+        duration={200}
+      >
+        <Button text={text} onClick={() => setUpdateMenuSelect("Contacto")} />
+      </ScrollLink>
+    );
   };
 
   return (
     <div className={`layout`}>
       <SEO title="Cleverit AR" />
 
-      <div className={`layout-side`}>
-        {menu.map(({ icon, title }) => (
-          <ScrollLink
-            key={title}
-            to={title}
-            containerId="content"
-            smooth={true}
-            offset={-50}
-            duration={200}
-            onClick={() => setSelected(title)}
-          >
-            <MenuItem
-              icon={icon}
-              title={title}
-              className={selected === title ? "menuItem-selected" : ""}
-            />
-          </ScrollLink>
-        ))}
-      </div>
+      <Menu selected={updateMenuSelect} />
 
-      <main id="content" children={fadeClass}>
+      <main id="content">
         <Element className="section" name="Nosotros">
-          <h1>AR</h1>
-          <Link to="/">Go back to the homepage</Link>
+          <h1>Cleverit XR</h1>
+          <h3>AR</h3>
+          <br />
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
+            hic cupiditate suscipit dignissimos praesentium quasi at blanditiis
+            tenetur modi ut, iusto perferendis nihil earum impedit quaerat.
+            Ipsum laudantium accusamus ipsa?
+          </p>
+          <br />
+          {ContactButton("¡Únete al futuro!")}
         </Element>
 
         <Element className="section" name="Servicios">
-          <h1>ASASDAW</h1>
-          <Link to="/">Go back to the homepage</Link>
+          <h1>Cleverit XR</h1>
+          <h3>AR</h3>
+          <br />
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
+            hic cupiditate suscipit dignissimos praesentium quasi at blanditiis
+            tenetur modi ut, iusto perferendis nihil earum impedit quaerat.
+            Ipsum laudantium accusamus ipsa?
+          </p>
+          <br />
+          {ContactButton("¡Únete al futuro!")}
         </Element>
 
         <Element className="section" name="Éxito">
-          <h1>EEEE</h1>
-          <Link to="/">Go back to the homepage</Link>
+          <h1>Cleverit XR</h1>
+          <h3>AR</h3>
+          <br />
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
+            hic cupiditate suscipit dignissimos praesentium quasi at blanditiis
+            tenetur modi ut, iusto perferendis nihil earum impedit quaerat.
+            Ipsum laudantium accusamus ipsa?
+          </p>
+          <br />
+          {ContactButton("¡Únete al futuro!")}
         </Element>
 
         <Element className="section" name="Contacto">
-          <h1>AR</h1>
-          <Link to="/">Go back to the homepage</Link>
+          <h1>Contacto</h1>
+          <h3>AR</h3>
+          <br />
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
+            hic cupiditate suscipit dignissimos praesentium quasi at blanditiis
+            tenetur modi ut, iusto perferendis nihil earum impedit quaerat.
+            Ipsum laudantium accusamus ipsa?
+          </p>
+          <br />
         </Element>
-        <footer> © Cleverit XR </footer>
       </main>
 
-      <div
-        className={`layout-side clickable ${
-          fadeClass === "fadeOut" ? "changeToVR" : ""
-        }`}
-        onClick={updateView}
-      >
-        <ChevronRight />
-      </div>
+      <Arrow onClick={updateView} changeTo="vr" />
     </div>
   );
 };
