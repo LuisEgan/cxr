@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link as ScrollLink } from "react-scroll";
+import { isMobile } from "react-device-detect";
+
 import Isologo from "svg/isologo.svg";
+import ChevronLeft from "svg/chevronLeft.svg";
+import ChevronRight from "svg/chevronRight.svg";
 
 import MenuItem from "./MenuItem";
 import Contact from "svg/icons/contact.svg";
@@ -19,9 +23,13 @@ const menu = [
 ];
 
 const Menu = props => {
-  const { onClickItem: onClickItemProp, selected: selectedProp } = props;
+  const { onClickItem: onClickItemProp, selected: selectedProp, side } = props;
 
   const [selected, setSelected] = useState("Nosotros");
+  const [mobileHidden, setMobileHidden] = useState(true);
+  const [mobileToggleIcon, setMobileToggleIcon] = useState(
+    side === "left" ? <ChevronRight /> : <ChevronLeft />
+  );
 
   useEffect(() => {
     if (selectedProp) {
@@ -34,8 +42,38 @@ const Menu = props => {
     onClickItemProp && onClickItemProp();
   };
 
+  const onClickMobileToggle = () => {
+    setMobileHidden(!mobileHidden);
+
+    let newIcon;
+    if (mobileHidden) {
+      newIcon = side === "left" ? <ChevronLeft /> : <ChevronRight />;
+    } else {
+      newIcon = side === "left" ? <ChevronRight /> : <ChevronLeft />;
+    }
+    setMobileToggleIcon(newIcon);
+  };
+
+  const getSideClass = () => {
+    if (!isMobile) return `layout-side`;
+
+    let className = `layout-side-mobile`;
+
+    if (mobileHidden) {
+      className += ` hidden-${side}`;
+    }
+
+    return className;
+  };
+
   return (
-    <div className={`layout-side`}>
+    <div className={getSideClass()}>
+      {isMobile && (
+        <div id="layout-side-mobile-toggle" onClick={onClickMobileToggle}>
+          {mobileToggleIcon}
+        </div>
+      )}
+
       <header>
         <Isologo />
       </header>
@@ -68,6 +106,7 @@ const Menu = props => {
 Menu.propTypes = {
   onClickItem: PropTypes.func,
   selected: PropTypes.string,
+  side: PropTypes.oneOf(["left", "right"]).isRequired,
 };
 
 Menu.defaultProps = {};

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
 import { Element } from "react-scroll";
+import { isMobile } from "react-device-detect";
+
 
 import SEO from "common/seo";
 import Menu from "../components/Sides/Menu";
@@ -21,7 +23,7 @@ const VR = props => {
   return (
     <div className={`layout`}>
       <SEO title="Cleverit VR" />
-
+    
       <Arrow onClick={updateView} changeTo="ar" />
 
       <main id="content" style={hiddenStyle}>
@@ -47,7 +49,7 @@ const VR = props => {
         <footer> © Cleverit XR </footer>
       </main>
 
-      <Menu />
+      <Menu side="left"/>
     </div>
   );
 };

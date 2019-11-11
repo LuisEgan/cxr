@@ -40,7 +40,7 @@ const AR = props => {
     <div className={`layout`}>
       <SEO title="Cleverit AR" />
 
-      <Menu selected={updateMenuSelect} />
+      <Menu selected={updateMenuSelect} side="left"/>
 
       <main id="content" style={hiddenStyle}>
         <Element className="section" name="Nosotros" id="us">
