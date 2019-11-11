@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link as ScrollLink, Element } from "react-scroll";
 
 import SEO from "common/seo";
@@ -11,9 +11,11 @@ import Isologo from "svg/isologo.svg";
 const AR = props => {
   const { navigate } = props;
 
+  const menuRef = useRef();
+  console.log('menuRef: ', menuRef);
+
   const [hiddenStyle, setHiddenStyle] = useState({});
   const [updateMenuSelect, setUpdateMenuSelect] = useState("");
-  console.log('updateMenuSelect: ', updateMenuSelect);
 
   const updateView = () => {
     setHiddenStyle({ visibility: "hidden" });
@@ -40,7 +42,7 @@ const AR = props => {
     <div className={`layout`}>
       <SEO title="Cleverit AR" />
 
-      <Menu selected={updateMenuSelect} side="left"/>
+      <Menu selected={updateMenuSelect} ref={menuRef} side="left" />
 
       <main id="content" style={hiddenStyle}>
         <Element className="section" name="Nosotros" id="us">

@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import PropTypes from "prop-types";
 import { Link as ScrollLink } from "react-scroll";
 import { isMobile } from "react-device-detect";
@@ -22,8 +27,13 @@ const menu = [
   { icon: <Contact />, title: "Contacto" },
 ];
 
-const Menu = props => {
-  const { onClickItem: onClickItemProp, selected: selectedProp, side } = props;
+const Menu = forwardRef((props, ref) => {
+  const {
+    onClickItem: onClickItemProp,
+    selected: selectedProp,
+    side,
+    mobileHidden: mobileHiddenProp,
+  } = props;
 
   const [selected, setSelected] = useState("Nosotros");
   const [mobileHidden, setMobileHidden] = useState(true);
@@ -31,11 +41,19 @@ const Menu = props => {
     side === "left" ? <ChevronRight /> : <ChevronLeft />
   );
 
+  useImperativeHandle(ref, () => {
+    setSelected, setMobileHidden;
+  });
+
   useEffect(() => {
     if (selectedProp) {
       setSelected(selectedProp);
     }
   }, [selectedProp]);
+
+  useEffect(() => {
+    setMobileHidden(mobileHiddenProp);
+  }, [mobileHiddenProp]);
 
   const onClickItem = title => {
     setSelected(title);
@@ -67,7 +85,7 @@ const Menu = props => {
   };
 
   return (
-    <div className={getSideClass()}>
+    <div className={getSideClass()} ref={ref}>
       {isMobile && (
         <div id="layout-side-mobile-toggle" onClick={onClickMobileToggle}>
           {mobileToggleIcon}
@@ -101,12 +119,13 @@ const Menu = props => {
       <footer> © Cleverit XR </footer>
     </div>
   );
-};
+});
 
 Menu.propTypes = {
+  side: PropTypes.oneOf(["left", "right"]).isRequired,
   onClickItem: PropTypes.func,
   selected: PropTypes.string,
-  side: PropTypes.oneOf(["left", "right"]).isRequired,
+  mobileHidden: PropTypes.bool,
 };
 
 Menu.defaultProps = {};
