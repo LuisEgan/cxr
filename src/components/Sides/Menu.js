@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  forwardRef,
-  useImperativeHandle,
-} from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import PropTypes from "prop-types";
 import { Link as ScrollLink } from "react-scroll";
 import { isMobile } from "react-device-detect";
@@ -18,8 +13,6 @@ import Us from "svg/icons/us.svg";
 import UseCases from "svg/icons/useCases.svg";
 import WeDo from "svg/icons/weDo.svg";
 
-import "./styles.scss";
-
 const menu = [
   { icon: <Us />, title: "Nosotros" },
   { icon: <WeDo />, title: "Servicios" },
@@ -33,30 +26,19 @@ const Menu = forwardRef((props, ref) => {
     selected: selectedProp,
     side,
     mobileHidden: mobileHiddenProp,
+    currentSection,
   } = props;
 
-  const [selected, setSelected] = useState("Nosotros");
   const [mobileHidden, setMobileHidden] = useState(true);
   const [mobileToggleIcon, setMobileToggleIcon] = useState(
     side === "left" ? <ChevronRight /> : <ChevronLeft />
   );
-
-  useImperativeHandle(ref, () => {
-    setSelected, setMobileHidden;
-  });
-
-  useEffect(() => {
-    if (selectedProp) {
-      setSelected(selectedProp);
-    }
-  }, [selectedProp]);
 
   useEffect(() => {
     setMobileHidden(mobileHiddenProp);
   }, [mobileHiddenProp]);
 
   const onClickItem = title => {
-    setSelected(title);
     onClickItemProp && onClickItemProp();
   };
 
@@ -110,7 +92,7 @@ const Menu = forwardRef((props, ref) => {
             <MenuItem
               icon={icon}
               title={title}
-              className={selected === title ? "menuItem-selected" : ""}
+              className={currentSection === title ? "menuItem-selected" : ""}
             />
           </ScrollLink>
         ))}
@@ -123,6 +105,7 @@ const Menu = forwardRef((props, ref) => {
 
 Menu.propTypes = {
   side: PropTypes.oneOf(["left", "right"]).isRequired,
+  currentSection: PropTypes.string.isRequired,
   onClickItem: PropTypes.func,
   selected: PropTypes.string,
   mobileHidden: PropTypes.bool,

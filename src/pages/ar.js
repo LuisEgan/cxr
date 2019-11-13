@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link as ScrollLink, Element } from "react-scroll";
 
 import SEO from "common/seo";
@@ -7,15 +7,13 @@ import Arrow from "../components/Sides/Arrow";
 import Button from "../components/Button";
 
 import Isologo from "svg/isologo.svg";
+import Section from "../components/.common/Section";
 
 const AR = props => {
   const { navigate } = props;
 
-  const menuRef = useRef();
-  console.log('menuRef: ', menuRef);
-
   const [hiddenStyle, setHiddenStyle] = useState({});
-  const [updateMenuSelect, setUpdateMenuSelect] = useState("");
+  const [currentSection, setCurrentSection] = useState("us");
 
   const updateView = () => {
     setHiddenStyle({ visibility: "hidden" });
@@ -33,7 +31,7 @@ const AR = props => {
         offset={-50}
         duration={200}
       >
-        <Button text={text} onClick={() => setUpdateMenuSelect("Contacto")} />
+        <Button text={text} />
       </ScrollLink>
     );
   };
@@ -42,78 +40,86 @@ const AR = props => {
     <div className={`layout`}>
       <SEO title="Cleverit AR" />
 
-      <Menu selected={updateMenuSelect} ref={menuRef} side="left" />
+      <Menu currentSection={currentSection} side="left" />
 
       <main id="content" style={hiddenStyle}>
-        <Element className="section" name="Nosotros" id="us">
-          <h1>Cleverit XR</h1>
-          <h3>AR</h3>
-          <br />
+        <Section setCurrentSection={setCurrentSection} id="Nosotros">
+          <Element className="section" name="Nosotros">
+            <h1>Cleverit XR</h1>
+            <h3>AR</h3>
+            <br />
 
-          <div id="us-content">
-            <div>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Aspernatur hic cupiditate suscipit dignissimos praesentium quasi
-                at blanditiis tenetur modi ut, iusto perferendis nihil earum
-                impedit quaerat. Ipsum laudantium accusamus ipsa?
-              </p>
+            <div id="us-content">
+              <div>
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Aspernatur hic cupiditate suscipit dignissimos praesentium
+                  quasi at blanditiis tenetur modi ut, iusto perferendis nihil
+                  earum impedit quaerat. Ipsum laudantium accusamus ipsa?
+                </p>
 
-              {ContactButton("¡Únete al futuro!")}
-            </div>
+                {ContactButton("¡Únete al futuro!")}
+              </div>
 
-            <div className="cc">
-              <Isologo />
-            </div>
-          </div>
-        </Element>
-
-        <Element className="section" name="Servicios" id="services">
-          <h1>Servicios</h1>
-          <h3>AR</h3>
-          <br />
-
-          <div id="services-content">
-            <div id="services-diagram" className="cc">
-              <div id="diagram-center">
-                <Isologo />
-                <Isologo />
-                <Isologo />
-                <Isologo />
+              <div className="cc">
                 <Isologo />
               </div>
             </div>
+          </Element>
+        </Section>
 
-            <div id="services-button">{ContactButton("¡Lo quiero!")}</div>
-          </div>
-        </Element>
+        <Section setCurrentSection={setCurrentSection} id="Servicios">
+          <Element className="section" name="Servicios">
+            <h1>Servicios</h1>
+            <h3>AR</h3>
+            <br />
 
-        <Element className="section" name="Éxito">
-          <h1>Cleverit XR</h1>
-          <h3>AR</h3>
-          <br />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
-            hic cupiditate suscipit dignissimos praesentium quasi at blanditiis
-            tenetur modi ut, iusto perferendis nihil earum impedit quaerat.
-            Ipsum laudantium accusamus ipsa?
-          </p>
-          <br />
-          {ContactButton("¡Únete al futuro!")}
-        </Element>
+            <div id="services-content">
+              <div id="services-diagram" className="cc">
+                <div id="diagram-center">
+                  <Isologo />
+                  <Isologo />
+                  <Isologo />
+                  <Isologo />
+                  <Isologo />
+                </div>
+              </div>
 
-        <Element className="section" name="Contacto">
-          <h1>Contacto</h1>
-          <h3>AR</h3>
-          <br />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
-            hic cupiditate suscipit dignissimos praesentium quasi at blanditiis
-            tenetur modi ut, iusto perferendis nihil earum impedit quaerat.
-            Ipsum laudantium accusamus ipsa?
-          </p>
-          <br />
-        </Element>
+              <div id="services-button">{ContactButton("¡Lo quiero!")}</div>
+            </div>
+          </Element>
+        </Section>
+
+        <Section setCurrentSection={setCurrentSection} id="Éxito">
+          <Element className="section" name="Éxito">
+            <h1>Cleverit XR</h1>
+            <h3>AR</h3>
+            <br />
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Aspernatur hic cupiditate suscipit dignissimos praesentium quasi
+              at blanditiis tenetur modi ut, iusto perferendis nihil earum
+              impedit quaerat. Ipsum laudantium accusamus ipsa?
+            </p>
+            <br />
+            {ContactButton("¡Únete al futuro!")}
+          </Element>
+        </Section>
+
+        <Section setCurrentSection={setCurrentSection} id="Contacto">
+          <Element className="section" name="Contacto">
+            <h1>Contacto</h1>
+            <h3>AR</h3>
+            <br />
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Aspernatur hic cupiditate suscipit dignissimos praesentium quasi
+              at blanditiis tenetur modi ut, iusto perferendis nihil earum
+              impedit quaerat. Ipsum laudantium accusamus ipsa?
+            </p>
+            <br />
+          </Element>
+        </Section>
       </main>
 
       <Arrow onClick={updateView} changeTo="vr" />

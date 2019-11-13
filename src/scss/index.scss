@@ -3,6 +3,7 @@
 @import "./animations.scss";
 @import "./home.scss";
 @import "./layout.scss";
+@import "../components//Sides/styles.scss";
 
 :root {
   --purple: #371a9f;
@@ -54,7 +55,7 @@
 .clickable {
   transition: 0.5s;
   &:hover {
-    @extend .menuItem-selected;
+    @extend .menuItem-selected !optional;
     cursor: pointer;
   }
 }

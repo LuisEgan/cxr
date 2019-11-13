@@ -62,3 +62,21 @@
   color: white;
   background-color: var(--purple);
 }
+
+.menuItem-selected {
+  transform: scale(1.2);
+  color: var(--purple);
+
+  rect,
+  polygon,
+  path,
+  line,
+  polyline {
+    stroke: var(--purple);
+    stroke-width: 10px;
+  }
+
+  > div {
+    color: var(--purple) !important;
+  }
+}
