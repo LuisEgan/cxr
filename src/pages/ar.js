@@ -90,7 +90,7 @@ const AR = props => {
           </Element>
         </Section>
 
-        <Section setCurrentSection={setCurrentSection} id="Éxito">
+        {/* <Section setCurrentSection={setCurrentSection} id="Éxito">
           <Element className="section" name="Éxito">
             <h1>Cleverit XR</h1>
             <h3>AR</h3>
@@ -104,7 +104,7 @@ const AR = props => {
             <br />
             {ContactButton("¡Únete al futuro!")}
           </Element>
-        </Section>
+        </Section> */}
 
         <Section setCurrentSection={setCurrentSection} id="Contacto">
           <Element className="section" name="Contacto">
