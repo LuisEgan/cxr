@@ -13,7 +13,7 @@ import IOSAR from "svg/IOSAR.svg";
 import UIUXAR from "svg/UiUxAr.svg";
 import WebAR from "svg/webArIcon.svg";
 
-// import FinalProduct from "json/finalProductAr.json";
+import FinalProduct from "json/finalProductAr.json";
 
 import Section from "../components/.common/Section";
 
@@ -94,8 +94,7 @@ const AR = props => {
             <div id="services-content">
               <div id="services-diagram" className="cc">
                 <div id="diagram-center">
-                  {/* <Lottie options={defaultOptions} height="unset" /> */}
-                  <AndroidAR />
+                  <Lottie options={defaultOptions} height="unset" />
                   <AndroidAR />
                   <IOSAR />
                   <WebAR />
