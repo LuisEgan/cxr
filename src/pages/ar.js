@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link as ScrollLink, Element } from "react-scroll";
+import Lottie from "react-lottie";
 
 import SEO from "common/seo";
 import Menu from "../components/Sides/Menu";
@@ -7,7 +8,23 @@ import Arrow from "../components/Sides/Arrow";
 import Button from "../components/Button";
 
 import Isologo from "svg/isologo.svg";
+import AndroidAR from "svg/AndroidAR.svg";
+import IOSAR from "svg/IOSAR.svg";
+import UIUXAR from "svg/UiUxAr.svg";
+import WebAR from "svg/webArIcon.svg";
+
+import FinalProduct from "json/finalProductAr.json";
+
 import Section from "../components/.common/Section";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: FinalProduct,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 const AR = props => {
   const { navigate } = props;
@@ -77,11 +94,11 @@ const AR = props => {
             <div id="services-content">
               <div id="services-diagram" className="cc">
                 <div id="diagram-center">
-                  <Isologo />
-                  <Isologo />
-                  <Isologo />
-                  <Isologo />
-                  <Isologo />
+                  <Lottie options={defaultOptions} height="unset" />
+                  <AndroidAR />
+                  <IOSAR />
+                  <WebAR />
+                  <UIUXAR />
                 </div>
               </div>
 

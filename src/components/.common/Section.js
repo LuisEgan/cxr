@@ -19,7 +19,7 @@ const Section = props => {
 };
 
 Section.propTypes = {
-  setCurrentSection: PropTypes.string,
+  setCurrentSection: PropTypes.func,
   id: PropTypes.string,
 };
 
