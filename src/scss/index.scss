@@ -3,6 +3,7 @@
 @import "./animations.scss";
 @import "./home.scss";
 @import "./layout.scss";
+@import "../components//Sides/styles.scss";
 
 :root {
   --purple: #371a9f;
@@ -54,7 +55,7 @@
 .clickable {
   transition: 0.5s;
   &:hover {
-    @extend .menuItem-selected;
+    @extend .menuItem-selected !optional;
     cursor: pointer;
   }
 }
@@ -63,7 +64,7 @@
 /*SECTIONS*/
 /********************/
 
-#us {
+#Nosotros {
   #us-content {
     display: flex;
     flex-wrap: wrap;
@@ -85,7 +86,7 @@
   }
 }
 
-#services {
+#Servicios {
   #services-content {
     display: flex;
     flex-flow: column;
@@ -93,20 +94,23 @@
     #services-diagram {
       height: 45vh;
       display: flex;
+      justify-content: flex-end;
+      flex-flow: column;
 
       #diagram-center {
         position: relative;
-        margin-left: -10vw;
+        height: 10vw;
+        width: 10vw;
 
         svg {
-          height: 5vw;
+          height: 7vw;
           position: absolute;
           fill: white;
 
           /* Final product: diagram's center */
           &:nth-child(1) {
             height: 8vw;
-            margin-left: -2vw;
+            // margin-left: -2vw;
           }
           &:nth-child(2) {
             transform: translate(-19vw, -5vh);

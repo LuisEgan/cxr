@@ -1,15 +1,20 @@
 .layout {
   height: 100vh;
   width: 100vw;
-  // background: #f2f2f2;
   display: flex;
-  justify-content: space-between;
+  // background-color: #f2f2f2;
+  // background-image: url("../../static/png/backLargeBlack.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   main {
     color: white;
     flex: 1;
     padding: 4% 5%;
     height: 100%;
+    min-width: 400px;
     overflow-x: hidden;
     overflow-y: auto;
     -ms-overflow-style: none; // IE 10+
@@ -34,10 +39,17 @@
     display: flex;
     height: 100%;
     width: 15vw;
+    min-width: 150px;
     background-color: white;
     flex-flow: column;
     justify-content: space-evenly;
     align-items: center;
+  }
+
+  .layout-side-mobile {
+    @extend .layout-side;
+    position: absolute;
+    z-index: 1;
   }
 }
 
@@ -61,19 +73,5 @@
 
   svg {
     height: 100%;
-  }
-}
-
-.menuItem-selected {
-  transform: scale(1.2);
-  color: var(--purple);
-
-  rect,
-  polygon,
-  path,
-  line,
-  polyline {
-    stroke: var(--purple);
-    stroke-width: 10px;
   }
 }
