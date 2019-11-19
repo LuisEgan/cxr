@@ -1,0 +1,24 @@
+#contact-form-container {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 5%;
+
+  form {
+    display: flex;
+    flex-flow: column;
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+    width: 25%;
+
+    > div {
+      width: 100%;
+    }
+  }
+
+  input,
+  textarea {
+    color: white;
+  }
+}

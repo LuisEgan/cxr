@@ -94,11 +94,13 @@
     #services-diagram {
       height: 45vh;
       display: flex;
+      justify-content: flex-end;
+      flex-flow: column;
 
       #diagram-center {
         position: relative;
-        height: 10vh;
-        width: 10vh;
+        height: 10vw;
+        width: 10vw;
 
         svg {
           height: 7vw;

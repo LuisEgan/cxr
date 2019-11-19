@@ -16,6 +16,7 @@ import WebAR from "svg/webArIcon.svg";
 import FinalProduct from "json/finalProductAr.json";
 
 import Section from "../components/.common/Section";
+import ContactForm from "../components/ContactForm";
 
 const defaultOptions = {
   loop: true,
@@ -127,14 +128,7 @@ const AR = props => {
           <Element className="section" name="Contacto">
             <h1>Contacto</h1>
             <h3>AR</h3>
-            <br />
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Aspernatur hic cupiditate suscipit dignissimos praesentium quasi
-              at blanditiis tenetur modi ut, iusto perferendis nihil earum
-              impedit quaerat. Ipsum laudantium accusamus ipsa?
-            </p>
-            <br />
+            <ContactForm />
           </Element>
         </Section>
       </main>
