@@ -10,20 +10,14 @@
 
 #eye {
   position: absolute;
-  top: 13%;
+  top: 10%;
   overflow: visible;
   fill: #f2f2f2;
-  height: 20%;
-  transition: 0.5s ease-in-out;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+  letter-spacing: 10px;
   z-index: 2;
-
-  path {
-    fill-opacity: 1;
-    // fill-opacity: 0;
-    // animation: revealPath 3s linear 2s;
-    // animation: revealPath 3s linear;
-    // animation-fill-mode: forwards;
-  }
 }
 
 #xrButton-container {

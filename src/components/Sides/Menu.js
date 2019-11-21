@@ -2,6 +2,7 @@ import React, { useState, useEffect, forwardRef } from "react";
 import PropTypes from "prop-types";
 import { Link as ScrollLink } from "react-scroll";
 import { isMobile } from "react-device-detect";
+import Lottie from "react-lottie";
 
 import Isologo from "svg/isologo.svg";
 import ChevronLeft from "svg/chevronLeft.svg";
@@ -12,6 +13,17 @@ import Contact from "svg/icons/contact.svg";
 import Us from "svg/icons/us.svg";
 import UseCases from "svg/icons/useCases.svg";
 import WeDo from "svg/icons/weDo.svg";
+
+import blinkData from "json/blink.json";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: blinkData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 const menu = [
   { icon: <Us />, title: "Nosotros" },
@@ -75,7 +87,8 @@ const Menu = forwardRef((props, ref) => {
       )}
 
       <header>
-        <Isologo />
+        <Lottie options={defaultOptions} width={"60%"} height={"60%"}/>
+        {/* <Isologo /> */}
       </header>
 
       <main>
