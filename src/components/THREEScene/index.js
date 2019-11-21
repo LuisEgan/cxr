@@ -53,7 +53,7 @@ const THREEScene = props => {
 
         const arPos = { x: 500, y: 250, z: 700 };
         loadFBX({
-          source: "models/fbx/planet_ar.fbx",
+          source: "models/fbx/planet_AR.fbx",
           pos: arPos,
           name: "ar",
           scale: planetScale,
@@ -61,11 +61,13 @@ const THREEScene = props => {
         });
 
         const vrPos = { x: -600, y: 100, z: 1000 };
+        const vrRot = { x: 0, y: 200, z: 0, q: 0 };
         loadFBX({
-          source: "models/fbx/planet_vr_3.fbx",
+          source: "models/fbx/planet_vr.fbx",
           pos: vrPos,
           name: "vr",
           scale: planetScale,
+          rotation: vrRot,
           onLoad: () => setVrLoading(false),
         });
       }
@@ -352,7 +354,14 @@ const THREEScene = props => {
     }
   };
 
-  const loadFBX = ({ source, pos, name, scale, onLoad: onLoadProp }) => {
+  const loadFBX = ({
+    source,
+    pos,
+    name,
+    scale,
+    rotation,
+    onLoad: onLoadProp,
+  }) => {
     const onLoad = object => {
       object.name = name;
 
@@ -361,6 +370,9 @@ const THREEScene = props => {
 
       scale = scale || { x: 1, y: 1, z: 1 };
       object.scale.set(scale.x, scale.y, scale.z);
+
+      rotation = rotation || { x: 0, y: 0, z: 0, q: 0 };
+      object.rotation.set(rotation.x, rotation.y, rotation.z, rotation.q);
 
       if (object.animations[0]) {
         const newAnim = new THREE.AnimationMixer(object);

@@ -10,8 +10,8 @@ import Button from "../components/Button";
 import Isologo from "svg/isologo.svg";
 import AndroidAR from "svg/AndroidAR.svg";
 import IOSAR from "svg/IOSAR.svg";
-import UIUXAR from "svg/UiUxAr.svg";
-import WebAR from "svg/webArIcon.svg";
+import UIUXAR from "svg/UI_UX_AR.svg";
+import WebAR from "svg/WebAr.svg";
 
 import FinalProduct from "json/finalProductAr.json";
 
@@ -117,8 +117,8 @@ const AR = props => {
               </div>
 
               <div id="services-content-result">
-                <Lottie options={defaultOptions} height="unset" />
-                <div></div>
+                <Lottie options={defaultOptions} height="unset" width="40%" />
+                <div id="services-content-result-info"></div>
               </div>
 
               <div id="services-button">{ContactButton("¡Lo quiero!")}</div>

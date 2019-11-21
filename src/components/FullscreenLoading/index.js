@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import Lottie from "react-lottie";
+
+import loadingData from "json/loading_1.json";
+import loadingData2 from "json/loading_2.json";
+import GlitchedText from "../GlitchedText";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: loadingData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 const FullscreenLoading = props => {
   const { id, style, className, show } = props;
@@ -20,13 +34,12 @@ const FullscreenLoading = props => {
 
   return (
     <div
-      className={`fullscreen-loading ${
-        show ? "fadeIn" : "fadeOut"
-      } ${className}`}
+      className={`fullscreen-loading ${show ? "" : "fadeOut"} ${className}`}
       style={style}
       id={id}
     >
-      LOADING
+      {/* <Lottie options={defaultOptions} height="unset" width="unset"/> */}
+      <GlitchedText text="Loading" />
     </div>
   );
 };
