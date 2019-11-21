@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import handleViewport from "react-in-viewport";
 
 const Section = props => {
-  const { inViewport, forwardedRef, children, setCurrentSection, id } = props;
+  const { inViewport, forwardedRef, children, updateSectionsState, id } = props;
 
   useEffect(() => {
-    if (inViewport) {
-      setCurrentSection(id);
-    }
+    updateSectionsState({ [id]: inViewport });
   }, [inViewport]);
 
   return (
@@ -19,7 +17,7 @@ const Section = props => {
 };
 
 Section.propTypes = {
-  setCurrentSection: PropTypes.func,
+  updateSectionsState: PropTypes.func,
   id: PropTypes.string,
 };
 

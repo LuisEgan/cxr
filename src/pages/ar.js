@@ -33,11 +33,29 @@ const AR = props => {
   const [hiddenStyle, setHiddenStyle] = useState({});
   const [currentSection, setCurrentSection] = useState("us");
 
+  const [sectionsState, setSectionsState] = useState({
+    Nosotros: true,
+    Servicios: false,
+    Contacto: false,
+  });
+
+  useEffect(() => {
+    for (let section in sectionsState) {
+      if (sectionsState[section]) {
+        setCurrentSection(section);
+      }
+    }
+  }, [sectionsState]);
+
   const updateView = () => {
     setHiddenStyle({ visibility: "hidden" });
     setTimeout(() => {
       navigate(`/vr`);
     }, 200);
+  };
+
+  const updateSectionsState = sectionState => {
+    setSectionsState({ ...sectionsState, ...sectionState });
   };
 
   const ContactButton = text => {
@@ -61,7 +79,7 @@ const AR = props => {
       <Menu currentSection={currentSection} side="left" />
 
       <main id="content" style={hiddenStyle}>
-        <Section setCurrentSection={setCurrentSection} id="Nosotros">
+        <Section updateSectionsState={updateSectionsState} id="Nosotros">
           <Element className="section" name="Nosotros">
             <h1>Cleverit XR</h1>
             <h3>AR</h3>
@@ -86,21 +104,21 @@ const AR = props => {
           </Element>
         </Section>
 
-        <Section setCurrentSection={setCurrentSection} id="Servicios">
+        <Section updateSectionsState={updateSectionsState} id="Servicios">
           <Element className="section" name="Servicios">
             <h1>Servicios</h1>
-            <h3>AR</h3>
-            <br />
 
             <div id="services-content">
-              <div id="services-diagram" className="cc">
-                <div id="diagram-center">
-                  <Lottie options={defaultOptions} height="unset" />
-                  <AndroidAR />
-                  <IOSAR />
-                  <WebAR />
-                  <UIUXAR />
-                </div>
+              <div id="services-content-icons">
+                <AndroidAR />
+                <IOSAR />
+                <WebAR />
+                <UIUXAR />
+              </div>
+
+              <div id="services-content-result">
+                <Lottie options={defaultOptions} height="unset" />
+                <div></div>
               </div>
 
               <div id="services-button">{ContactButton("¡Lo quiero!")}</div>
@@ -108,7 +126,7 @@ const AR = props => {
           </Element>
         </Section>
 
-        {/* <Section setCurrentSection={setCurrentSection} id="Éxito">
+        {/* <Section updateSectionsState={updateSectionsState} id="Éxito">
           <Element className="section" name="Éxito">
             <h1>Cleverit XR</h1>
             <h3>AR</h3>
@@ -124,7 +142,7 @@ const AR = props => {
           </Element>
         </Section> */}
 
-        <Section setCurrentSection={setCurrentSection} id="Contacto">
+        <Section updateSectionsState={updateSectionsState} id="Contacto">
           <Element className="section" name="Contacto">
             <h1>Contacto</h1>
             <h3>AR</h3>
