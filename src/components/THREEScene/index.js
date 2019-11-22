@@ -55,7 +55,8 @@ const THREEScene = props => {
         loadFBX({
           source: "models/fbx/planet_AR.fbx",
           pos: arPos,
-          name: "ar",
+          name: "Augmented Reality",
+          url: "ar",
           scale: planetScale,
           onLoad: () => setArLoading(false),
         });
@@ -65,7 +66,8 @@ const THREEScene = props => {
         loadFBX({
           source: "models/fbx/planet_vr.fbx",
           pos: vrPos,
-          name: "vr",
+          name: "Virtual Reality",
+          url: "vr",
           scale: planetScale,
           rotation: vrRot,
           onLoad: () => setVrLoading(false),
@@ -358,6 +360,7 @@ const THREEScene = props => {
     source,
     pos,
     name,
+    url,
     scale,
     rotation,
     onLoad: onLoadProp,
@@ -393,7 +396,7 @@ const THREEScene = props => {
 
       object.cursor = "pointer";
       object.on("click", ev => {
-        updateView(name);
+        updateView(url);
         clicked = true;
       });
       object.on("mouseover", ev => {

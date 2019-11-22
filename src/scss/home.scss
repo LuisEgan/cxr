@@ -66,6 +66,13 @@
 
 .glitched-text {
   position: absolute;
-  bottom: 10vh;
-  left: 47vw;
+  bottom: 15vh;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+
+  > span {
+    left: 0;
+    right: 0;
+  }
 }

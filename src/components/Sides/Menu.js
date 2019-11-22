@@ -1,10 +1,10 @@
 import React, { useState, useEffect, forwardRef } from "react";
 import PropTypes from "prop-types";
+import { Link } from "gatsby";
 import { Link as ScrollLink } from "react-scroll";
 import { isMobile } from "react-device-detect";
 import Lottie from "react-lottie";
 
-import Isologo from "svg/isologo.svg";
 import ChevronLeft from "svg/chevronLeft.svg";
 import ChevronRight from "svg/chevronRight.svg";
 
@@ -87,8 +87,9 @@ const Menu = forwardRef((props, ref) => {
       )}
 
       <header>
-        <Lottie options={defaultOptions} width={"60%"} height={"60%"}/>
-        {/* <Isologo /> */}
+        <Link to="/">
+          <Lottie options={defaultOptions} width={"60%"} height={"60%"} />
+        </Link>
       </header>
 
       <main>

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link as ScrollLink, Element } from "react-scroll";
+import { Element } from "react-scroll";
 import Lottie from "react-lottie";
 
 import SEO from "common/seo";
 import Menu from "../components/Sides/Menu";
 import Arrow from "../components/Sides/Arrow";
-import Button from "../components/Button";
 
 import Isologo from "svg/isologo.svg";
 import AndroidAR from "svg/AndroidAR.svg";
@@ -17,6 +16,7 @@ import FinalProduct from "json/finalProductAr.json";
 
 import Section from "../components/.common/Section";
 import ContactForm from "../components/ContactForm";
+import ContactButton from "../components/ContactButton";
 
 const defaultOptions = {
   loop: true,
@@ -58,20 +58,6 @@ const AR = props => {
     setSectionsState({ ...sectionsState, ...sectionState });
   };
 
-  const ContactButton = text => {
-    return (
-      <ScrollLink
-        to="Contacto"
-        containerId="content"
-        smooth={true}
-        offset={-50}
-        duration={200}
-      >
-        <Button text={text} />
-      </ScrollLink>
-    );
-  };
-
   return (
     <div className={`layout`}>
       <SEO title="Cleverit AR" />
@@ -82,7 +68,7 @@ const AR = props => {
         <Section updateSectionsState={updateSectionsState} id="Nosotros">
           <Element className="section" name="Nosotros">
             <h1>Cleverit XR</h1>
-            <h3>AR</h3>
+            <h3>Augmented Reality</h3>
             <br />
 
             <div id="us-content">
@@ -94,7 +80,7 @@ const AR = props => {
                   earum impedit quaerat. Ipsum laudantium accusamus ipsa?
                 </p>
 
-                {ContactButton("¡Únete al futuro!")}
+                <ContactButton text="¡Únete al futuro!" />
               </div>
 
               <div className="cc">
@@ -121,7 +107,9 @@ const AR = props => {
                 <div id="services-content-result-info"></div>
               </div>
 
-              <div id="services-button">{ContactButton("¡Lo quiero!")}</div>
+              <div id="services-button">
+                <ContactButton text="¡Lo quiero!" />
+              </div>
             </div>
           </Element>
         </Section>
@@ -138,7 +126,7 @@ const AR = props => {
               impedit quaerat. Ipsum laudantium accusamus ipsa?
             </p>
             <br />
-            {ContactButton("¡Únete al futuro!")}
+            <ContactButton text="¡Únete al futuro!" />
           </Element>
         </Section> */}
 
