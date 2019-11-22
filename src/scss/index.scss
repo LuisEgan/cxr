@@ -3,6 +3,7 @@
 @import "./animations.scss";
 @import "./home.scss";
 @import "./layout.scss";
+@import "./sections.scss";
 @import "../components//Sides/styles.scss";
 
 :root {
@@ -50,6 +51,17 @@
   justify-content: center;
   align-items: center;
   background: black;
+
+  .glitched-text {
+    position: unset;
+    font-size: 0.5em;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .clickable {
@@ -57,79 +69,5 @@
   &:hover {
     @extend .menuItem-selected !optional;
     cursor: pointer;
-  }
-}
-
-/********************/
-/*SECTIONS*/
-/********************/
-
-#Nosotros {
-  #us-content {
-    display: flex;
-    flex-wrap: wrap;
-
-    > div {
-      flex: 1;
-      min-width: 300px;
-
-      &:first-child {
-        padding-bottom: 5vh;
-      }
-    }
-
-    svg {
-      height: 30vh;
-      stroke: white;
-      fill: white;
-    }
-  }
-}
-
-#Servicios {
-  #services-content {
-    display: flex;
-    flex-flow: column;
-
-    #services-diagram {
-      height: 45vh;
-      display: flex;
-      justify-content: flex-end;
-      flex-flow: column;
-
-      #diagram-center {
-        position: relative;
-        height: 10vw;
-        width: 10vw;
-
-        svg {
-          height: 7vw;
-          position: absolute;
-          fill: white;
-
-          /* Final product: diagram's center */
-          &:nth-child(1) {
-            height: 8vw;
-            // margin-left: -2vw;
-          }
-          &:nth-child(2) {
-            transform: translate(-19vw, -5vh);
-          }
-          &:nth-child(3) {
-            transform: translate(-8vw, -25vh);
-          }
-          &:nth-child(4) {
-            transform: translate(8vw, -25vh);
-          }
-          &:nth-child(5) {
-            transform: translate(19vw, -5vh);
-          }
-        }
-      }
-    }
-
-    #services-button {
-      padding-top: 5vh;
-    }
   }
 }
