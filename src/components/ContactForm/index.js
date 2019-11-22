@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import "./styles.scss";
 import Button from "../Button";
 
-const CssTextField = withStyles({
+const Input = withStyles({
   root: {
     "& label.Mui-focused": {
       color: "#371a9f !important",
@@ -63,12 +63,12 @@ const ContactForm = props => {
             <Field name="name">
               {({ field, meta }) => {
                 return (
-                  <CssTextField
+                  <Input
+                    {...field}
                     error={meta.touched && meta.error}
                     label="Nombre"
                     margin="normal"
                     variant="outlined"
-                    {...field}
                   />
                 );
               }}
@@ -76,26 +76,26 @@ const ContactForm = props => {
 
             <Field name="email">
               {({ field, meta }) => (
-                <CssTextField
+                <Input
+                  {...field}
                   error={meta.touched && meta.error}
                   label="Email"
                   margin="normal"
                   variant="outlined"
-                  {...field}
                 />
               )}
             </Field>
 
             <Field name="message">
               {({ field, meta }) => (
-                <CssTextField
+                <Input
+                  {...field}
                   error={meta.touched && meta.error}
                   label="Mensaje"
                   margin="normal"
                   variant="outlined"
                   multiline
                   rows="4"
-                  {...field}
                 />
               )}
             </Field>
