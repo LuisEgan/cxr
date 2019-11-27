@@ -58,7 +58,7 @@ const IndexPage = props => {
           <>
             <div id="eye">
               <Lottie options={defaultOptions} width="70%" height="unset" />
-              Ceverit XR
+              Cleverit XR
             </div>
             <GlitchedText text={glitchedText} />
           </>
