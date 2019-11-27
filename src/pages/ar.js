@@ -11,7 +11,7 @@ import Isologo from "svg/isologo.svg";
 import AndroidAR from "svg/AndroidAR.svg";
 import IOSAR from "svg/IOSAR.svg";
 import UIUXAR from "svg/UI_UX_AR.svg";
-import WebAR from "svg/WebAr.svg";
+import WebAR from "svg/WebAR.svg";
 
 import FinalProduct from "json/finalProductAr.json";
 
