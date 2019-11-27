@@ -47,6 +47,20 @@ const VR = props => {
     }
   }, [sectionsState]);
 
+  const [sectionsState, setSectionsState] = useState({
+    Nosotros: true,
+    Servicios: false,
+    Contacto: false,
+  });
+
+  useEffect(() => {
+    for (let section in sectionsState) {
+      if (sectionsState[section]) {
+        setCurrentSection(section);
+      }
+    }
+  }, [sectionsState]);
+
   const updateView = () => {
     setHiddenStyle({ visibility: "hidden" });
     setTimeout(() => {
