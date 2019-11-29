@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 import "./styles.scss";
 import Button from "../Button";
+import { sendEmail } from "../../utils/email";
 
 const Input = withStyles({
   root: {
@@ -31,31 +32,67 @@ const Input = withStyles({
   },
 })(TextField);
 
-const ContactForm = props => {
+const validate = values => {
+  const errors = {};
+
+  for (let value in values) {
+    if (!values[value]) {
+      errors[value] = "Required";
+    }
+  }
+
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+
+  return errors;
+};
+
+const sendContactEmail = async (
+  values,
+  { setSubmitting },
+  setFeedbackMessage
+) => {
+  try {
+    const { email, name, message } = values;
+
+    const res = await sendEmail({
+      from: "no-reply@cleverit.cl",
+      to: [
+        { email: "l@cleverit.cl", name: "L" },
+        { email: "k@cleverit.cl", name: "K" },
+      ],
+      html: `EL RISAS - La persona de nombre ${name} e email ${email} escribió el siguiente mensaje: <br/> ${message}`,
+      text: `EL BROMAS - La persona de nombre ${name} e email ${email} escribió el siguiente mensaje: <br/> ${message}`,
+      subject: "Contacto XR",
+    });
+
+    const {
+      data: { error_code, error, message: resMessage },
+    } = res;
+    if (error_code) throw new Error(resMessage || error || error_code);
+
+    setSubmitting(false);
+    setFeedbackMessage("Nos pondremos en contacto contigo muy pronto 😎");
+  } catch (error) {
+    console.error("error @onSubmit: ", error);
+    setFeedbackMessage("Houston.. tuvimos un problema 😵");
+  }
+};
+
+const ContactForm = () => {
+  const [loading, setLoading] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+
   return (
     <div id="contact-form-container">
       <Formik
         initialValues={{ name: "", email: "", message: "" }}
-        validate={values => {
-          const errors = {};
-
-          for (let value in values) {
-            if (!values[value]) {
-              errors[value] = "Required";
-            }
-          }
-
-          if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            errors.email = "Invalid email address";
-          }
-
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        validate={validate}
+        onSubmit={async (values, e) => {
+          setLoading(true);
+          await sendContactEmail(values, e, setFeedbackMessage);
+          setLoading(false);
         }}
       >
         {({ isSubmitting }) => (
@@ -100,9 +137,12 @@ const ContactForm = props => {
               )}
             </Field>
 
-            <button type="submit" disabled={isSubmitting}>
-              <Button text={"Contactar"} />
-            </button>
+            <div>
+              <button type="submit" disabled={isSubmitting || loading}>
+                <Button text={loading ? "Loading..." : "Contactar"} />
+              </button>
+              <span>{feedbackMessage}</span>
+            </div>
           </Form>
         )}
       </Formik>
