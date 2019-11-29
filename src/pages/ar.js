@@ -74,10 +74,14 @@ const AR = props => {
             <div id="us-content">
               <div>
                 <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Aspernatur hic cupiditate suscipit dignissimos praesentium
-                  quasi at blanditiis tenetur modi ut, iusto perferendis nihil
-                  earum impedit quaerat. Ipsum laudantium accusamus ipsa?
+                  Creamos nuevas, potentes e inmersivas experiencias para tus
+                  clientes o trabajadores, usando las tecnologías de realidad
+                  aumentada y virtual. <br /> <br />
+                  Soluciones para el marketing, retail u operaciones
+                  industriales son algunas de las áreas en donde puedes
+                  impactar, y para lograrlo con éxito en CXR te apoyaremos con
+                  nuestro "know how" en cada etapa del proceso de diseño y
+                  desarrollo de la experiencia con foco 100% en el usuario.
                 </p>
 
                 <ContactButton text="¡Únete al futuro!" />
@@ -104,7 +108,14 @@ const AR = props => {
 
               <div id="services-content-result">
                 <Lottie options={defaultOptions} height="unset" width="40%" />
-                <div id="services-content-result-info"></div>
+                <div id="services-content-result-info" className="cc">
+                  <p>
+                    Ofrecemos un producto de realidad aumentada que funcione en
+                    todas las plataformas que necesites, desde cualquier móvil
+                    hasta web; Además, con un diseño intuitivo y elegante a la
+                    altura de tu producto.
+                  </p>
+                </div>
               </div>
 
               <div id="services-button">

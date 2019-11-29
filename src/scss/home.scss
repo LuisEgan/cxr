@@ -65,8 +65,10 @@
 }
 
 .glitched-text {
+  @extend .cc;
   position: absolute;
-  bottom: 15vh;
+  bottom: 0;
+  height: 25vh;
   left: 0;
   width: 100%;
   overflow: hidden;

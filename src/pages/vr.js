@@ -13,7 +13,7 @@ import Isologo from "svg/isologo.svg";
 import AndroidAR from "svg/AndroidAR.svg";
 import IOSAR from "svg/IOSAR.svg";
 import UIUXAR from "svg/UI_UX_AR.svg";
-import WebAR from "svg/WebAr.svg";
+import WebAR from "svg/WebAR.svg";
 
 import FinalProduct from "json/finalProductAr.json";
 import ContactForm from "../components/ContactForm";
@@ -33,12 +33,6 @@ const VR = props => {
   const [hiddenStyle, setHiddenStyle] = useState({});
   const [currentSection, setCurrentSection] = useState("us");
 
-  const [sectionsState, setSectionsState] = useState({
-    Nosotros: true,
-    Servicios: false,
-    Contacto: false,
-  });
-
   useEffect(() => {
     for (let section in sectionsState) {
       if (sectionsState[section]) {
@@ -52,14 +46,6 @@ const VR = props => {
     Servicios: false,
     Contacto: false,
   });
-
-  useEffect(() => {
-    for (let section in sectionsState) {
-      if (sectionsState[section]) {
-        setCurrentSection(section);
-      }
-    }
-  }, [sectionsState]);
 
   const updateView = () => {
     setHiddenStyle({ visibility: "hidden" });
