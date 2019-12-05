@@ -1,0 +1,35 @@
+#interactiveAR {
+  height: 50vh;
+
+  img {
+    height: 100%;
+  }
+
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    height: 100%;
+  }
+
+  #clickMe {
+    height: 100%;
+    background-color: black;
+    font-size: 4em;
+    transition: 0.5s;
+
+    span {
+      margin: 2.5vh 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      font-size: 5em;
+    }
+  }
+
+  #scanMe {
+    text-align: center;
+  }
+}

@@ -1,4 +1,8 @@
 #Nosotros {
+  h1 {
+    font-size: 4rem;
+  }
+
   #us-content {
     display: flex;
     flex-wrap: wrap;
@@ -32,6 +36,8 @@
     #services-content-icons {
       height: 10vh;
       width: 100%;
+      flex-wrap: wrap;
+      min-width: 150px;
 
       > div {
         > div {
@@ -40,24 +46,30 @@
       }
 
       svg {
-        height: 100%;
+        height: 90%;
         transition: 0.4s;
         flex: 1;
+        min-width: 200px;
+        margin: 5% 0;
 
         &:hover {
           transform: scale(1.3);
         }
       }
-    }
-
-    #services-content-result {
-      #services-content-result-info {
-        flex: 1;
-      }
 
       @media (max-width: 400px) {
         display: none;
       }
+    }
+
+    #services-content-result {
+      flex-flow: column;
+      margin-top: 5%;
+
+      #services-content-result-info {
+        flex: 1;
+      }
+
     }
 
     #services-diagram {

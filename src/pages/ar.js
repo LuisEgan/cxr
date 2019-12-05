@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Element } from "react-scroll";
+import { isMobile } from "react-device-detect";
 import Lottie from "react-lottie";
 
 import SEO from "common/seo";
@@ -17,6 +18,7 @@ import FinalProduct from "json/finalProductAr.json";
 import Section from "../components/.common/Section";
 import ContactForm from "../components/ContactForm";
 import ContactButton from "../components/ContactButton";
+import InteractiveAR from "../components/InteractiveAR";
 
 const defaultOptions = {
   loop: true,
@@ -67,28 +69,28 @@ const AR = props => {
       <main id="content" style={hiddenStyle}>
         <Section updateSectionsState={updateSectionsState} id="Nosotros">
           <Element className="section" name="Nosotros">
-            <h1>Cleverit XR</h1>
+            <h1>Cleverit AR</h1>
             <h3>Augmented Reality</h3>
             <br />
 
             <div id="us-content">
               <div>
                 <p>
-                  Creamos nuevas, potentes e inmersivas experiencias para tus
-                  clientes o trabajadores, usando las tecnologías de realidad
-                  aumentada y virtual. <br /> <br />
-                  Soluciones para el marketing, retail u operaciones
-                  industriales son algunas de las áreas en donde puedes
-                  impactar, y para lograrlo con éxito en CXR te apoyaremos con
-                  nuestro "know how" en cada etapa del proceso de diseño y
-                  desarrollo de la experiencia con foco 100% en el usuario.
+                  Soluciones en AR para: <br />
+                  <br />
+                  <ul>
+                    <li>Marketing</li>
+                    <li>Retail</li>
+                    <li>Operaciones industriales</li>
+                    <li>Lo que necesites</li>
+                  </ul>
                 </p>
 
                 <ContactButton text="¡Únete al futuro!" />
               </div>
 
-              <div className="cc">
-                <Isologo />
+              <div className="">
+                <InteractiveAR />
               </div>
             </div>
           </Element>
@@ -107,13 +109,14 @@ const AR = props => {
               </div>
 
               <div id="services-content-result">
-                <Lottie options={defaultOptions} height="unset" width="40%" />
+                <Lottie
+                  options={defaultOptions}
+                  height="unset"
+                  width={isMobile ? "90%" : "25%"}
+                />
                 <div id="services-content-result-info" className="cc">
                   <p>
-                    Ofrecemos un producto de realidad aumentada que funcione en
-                    todas las plataformas que necesites, desde cualquier móvil
-                    hasta web; Además, con un diseño intuitivo y elegante a la
-                    altura de tu producto.
+                    Todas las plataformas. Diseño atractivo. Todo a tu medida.
                   </p>
                 </div>
               </div>

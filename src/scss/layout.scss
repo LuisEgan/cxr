@@ -12,9 +12,9 @@
   main {
     color: white;
     flex: 1;
-    padding: 0 5%;
+    // padding: 0 5%;
     height: 100%;
-    min-width: 400px;
+    min-width: 200px;
     overflow-x: hidden;
     overflow-y: auto;
     -ms-overflow-style: none; // IE 10+
@@ -27,8 +27,10 @@
     }
 
     .section {
-      height: 100vh;
-      margin-top: 5vh;
+      min-height: 100vh;
+      width: 90%;
+      margin: auto;
+      margin-top: 6vh;
 
       p {
         font-weight: 300;
@@ -43,7 +45,7 @@
     min-width: 150px;
     background-color: white;
     flex-flow: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
   }
 

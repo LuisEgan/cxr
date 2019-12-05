@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "gatsby";
+import { isMobile } from "react-device-detect";
 import { Element } from "react-scroll";
 import Lottie from "react-lottie";
 
@@ -10,12 +10,12 @@ import Section from "../components/.common/Section";
 import ContactButton from "../components/ContactButton";
 
 import Isologo from "svg/isologo.svg";
-import AndroidAR from "svg/AndroidAR.svg";
-import IOSAR from "svg/IOSAR.svg";
-import UIUXAR from "svg/UI_UX_AR.svg";
-import WebAR from "svg/WebAR.svg";
+import AndroidVR from "svg/AndroidVR.svg";
+import IOSVR from "svg/IOSVr.svg";
+import UIUXVR from "svg/UiUxVr.svg";
+import Headset from "svg/Headset.svg";
 
-import FinalProduct from "json/finalProductAr.json";
+import FinalProduct from "json/finalProductVr.json";
 import ContactForm from "../components/ContactForm";
 
 const defaultOptions = {
@@ -67,23 +67,27 @@ const VR = props => {
       <main id="content" style={hiddenStyle}>
         <Section updateSectionsState={updateSectionsState} id="Nosotros">
           <Element className="section" name="Nosotros">
-            <h1>Cleverit XR</h1>
-            <h3>Virtual Reality</h3>
+            <h1>Cleverit VR</h1>
+            <h3>Virutal Reality</h3>
             <br />
 
             <div id="us-content">
               <div>
                 <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Aspernatur hic cupiditate suscipit dignissimos praesentium
-                  quasi at blanditiis tenetur modi ut, iusto perferendis nihil
-                  earum impedit quaerat. Ipsum laudantium accusamus ipsa?
+                  Soluciones en VR para: <br />
+                  <br />
+                  <ul>
+                    <li>Operaciones industriales</li>
+                    <li>Marketing</li>
+                    <li>Videojuegos</li>
+                    <li>Cualquier mundo que te imagines</li>
+                  </ul>
                 </p>
 
                 <ContactButton text="¡Únete al futuro!" />
               </div>
 
-              <div className="cc">
+              <div className="">
                 <Isologo />
               </div>
             </div>
@@ -96,15 +100,24 @@ const VR = props => {
 
             <div id="services-content">
               <div id="services-content-icons">
-                <AndroidAR />
-                <IOSAR />
-                <WebAR />
-                <UIUXAR />
+                <AndroidVR />
+                <IOSVR />
+                <UIUXVR />
+                <Headset />
               </div>
 
               <div id="services-content-result">
-                <Lottie options={defaultOptions} height="unset" width="40%" />
-                <div id="services-content-result-info"></div>
+                <Lottie
+                  options={defaultOptions}
+                  height="unset"
+                  width={isMobile ? "90%" : "25%"}
+                />
+                <div id="services-content-result-info" className="cc">
+                  <p>
+                    Mundos nuevos en cualquier dispositivo. No existen límites,
+                    solo oportunidades.
+                  </p>
+                </div>
               </div>
 
               <div id="services-button">
