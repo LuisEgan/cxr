@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { isMobile } from "react-device-detect";
 import { Element } from "react-scroll";
 import Lottie from "react-lottie";
 
@@ -17,6 +16,7 @@ import Headset from "svg/Headset.svg";
 
 import FinalProduct from "json/finalProductVr.json";
 import ContactForm from "../components/ContactForm";
+import { useIsMobile } from "../utils/hooks";
 
 const defaultOptions = {
   loop: true,
@@ -30,6 +30,7 @@ const defaultOptions = {
 const VR = props => {
   const { navigate } = props;
 
+  const isMobile = useIsMobile();
   const [hiddenStyle, setHiddenStyle] = useState({});
   const [currentSection, setCurrentSection] = useState("us");
 
@@ -130,7 +131,7 @@ const VR = props => {
         <Section updateSectionsState={updateSectionsState} id="Contacto">
           <Element className="section" name="Contacto">
             <h1>Contacto</h1>
-            <h3>AR</h3>
+            <h3>VR</h3>
             <ContactForm />
           </Element>
         </Section>

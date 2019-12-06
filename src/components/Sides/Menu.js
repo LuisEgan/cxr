@@ -2,7 +2,6 @@ import React, { useState, useEffect, forwardRef } from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { Link as ScrollLink } from "react-scroll";
-import { isMobile } from "react-device-detect";
 import Lottie from "react-lottie";
 
 import ChevronLeft from "svg/chevronLeft.svg";
@@ -15,6 +14,7 @@ import UseCases from "svg/icons/useCases.svg";
 import WeDo from "svg/icons/weDo.svg";
 
 import blinkData from "json/blink.json";
+import { useIsMobile } from "../../utils/hooks";
 
 const defaultOptions = {
   loop: true,
@@ -41,6 +41,7 @@ const Menu = forwardRef((props, ref) => {
     currentSection,
   } = props;
 
+  const isMobile = useIsMobile();
   const [mobileHidden, setMobileHidden] = useState(true);
   const [mobileToggleIcon, setMobileToggleIcon] = useState(
     side === "left" ? <ChevronRight /> : <ChevronLeft />
@@ -51,6 +52,10 @@ const Menu = forwardRef((props, ref) => {
   }, [mobileHiddenProp]);
 
   const onClickItem = title => {
+    if (isMobile) {
+      onClickMobileToggle();
+    }
+
     onClickItemProp && onClickItemProp();
   };
 

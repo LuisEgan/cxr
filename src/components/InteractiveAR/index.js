@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { isMobile } from "react-device-detect";
+import { useIsMobile } from "../../utils/hooks";
 
 import QR from "png/pattern-cxrqr-opacity-50.png";
 
 import "./styles.scss";
 
 const InteractiveAR = () => {
+  const isMobile = useIsMobile();
   const [clicked, setClicked] = useState(true);
 
   if (isMobile) return null;

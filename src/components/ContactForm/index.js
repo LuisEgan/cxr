@@ -144,12 +144,14 @@ const ContactForm = () => {
                 )}
               </Field>
 
-              <ReCAPTCHA
-                sitekey="6LfQhsYUAAAAALZxJmKDQEE8J1oTpTh3ELnLNrG9"
-                onChange={e => setCaptcha(true)}
-              />
+              <div id="recaptcha">
+                <ReCAPTCHA
+                  sitekey="6LfQhsYUAAAAALZxJmKDQEE8J1oTpTh3ELnLNrG9"
+                  onChange={e => setCaptcha(!!e)}
+                />
+              </div>
 
-              <div>
+              <div id="button-container">
                 <button type="submit" disabled={isButtonDisabled}>
                   <Button
                     text={loading ? "Loading..." : "Contactar"}

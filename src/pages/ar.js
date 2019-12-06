@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Element } from "react-scroll";
-import { isMobile } from "react-device-detect";
 import Lottie from "react-lottie";
 
 import SEO from "common/seo";
@@ -19,6 +18,7 @@ import Section from "../components/.common/Section";
 import ContactForm from "../components/ContactForm";
 import ContactButton from "../components/ContactButton";
 import InteractiveAR from "../components/InteractiveAR";
+import { useIsMobile } from "../utils/hooks";
 
 const defaultOptions = {
   loop: true,
@@ -32,6 +32,7 @@ const defaultOptions = {
 const AR = props => {
   const { navigate } = props;
 
+  const isMobile = useIsMobile();
   const [hiddenStyle, setHiddenStyle] = useState({});
   const [currentSection, setCurrentSection] = useState("us");
 

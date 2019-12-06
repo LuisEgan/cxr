@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { isMobile } from "react-device-detect";
 import SEO from "common/seo";
 import Lottie from "react-lottie";
 
 import isologoData from "json/loading_2.json";
 
-import Isologo from "svg/isologo.svg";
 import Smartphone from "svg/smartphone.svg";
 import VR from "svg/vr.svg";
 
@@ -15,6 +13,7 @@ import FullscreenLoading from "../components/FullscreenLoading";
 import GlitchedText from "../components/GlitchedText";
 
 import "scss/index.scss";
+import { useIsMobile } from "../utils/hooks";
 
 const defaultOptions = {
   loop: false,
@@ -28,8 +27,10 @@ const defaultOptions = {
 const IndexPage = props => {
   const { navigate } = props;
 
+  const isMobile = useIsMobile();
   const [fadeClass, setFadeClass] = useState("fadeIn");
   const [THREESceneLoading, setTHREESceneLoading] = useState(true);
+  console.log("THREESceneLoading: ", THREESceneLoading);
   const [glitchedText, setGlitchedText] = useState("");
 
   const updateView = view => {
@@ -54,13 +55,13 @@ const IndexPage = props => {
           setGlitchedText={setGlitchedText}
         />
 
-        {!THREESceneLoading && (
+        {(!THREESceneLoading || isMobile) && (
           <>
             <div id="eye">
-              <Lottie options={defaultOptions} width="70%" height="unset" />
+              <Lottie options={defaultOptions} width="60%" height="unset" />
               Cleverit XR
             </div>
-            <GlitchedText text={glitchedText} />
+            {glitchedText && <GlitchedText text={glitchedText} />}
           </>
         )}
 

@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { isMobile } from "react-device-detect";
 
-import ChevronLeft from "svg/chevronLeft.svg";
-import ChevronRight from "svg/chevronRight.svg";
 import AR from "svg/icon_ar.svg";
 import VR from "svg/icon_vr.svg";
+import { useIsMobile } from "../../utils/hooks";
 
 const Menu = props => {
   const { onClick: onClickProp, changeTo } = props;
 
+  const isMobile = useIsMobile();
   const [clicked, setClicked] = useState(false);
 
   const onClick = title => {
