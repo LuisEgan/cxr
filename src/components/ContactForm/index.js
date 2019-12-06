@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
+import { loadReCaptcha, ReCaptcha } from "react-recaptcha-v3";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
@@ -84,6 +85,10 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
+  useEffect(() => {
+    loadReCaptcha("6LdghsYUAAAAAFX-4juh4moQqND7t2t-bh1JzK6t");
+  }, []);
+
   return (
     <div id="contact-form-container">
       <Formik
@@ -136,6 +141,12 @@ const ContactForm = () => {
                 />
               )}
             </Field>
+
+            <ReCaptcha
+              sitekey="6LdghsYUAAAAAFX-4juh4moQqND7t2t-bh1JzK6t"
+              action="homepage"
+              verifyCallback={e => console.log(e)}
+            />
 
             <div>
               <button type="submit" disabled={isSubmitting || loading}>
