@@ -78,13 +78,13 @@ const AR = props => {
                 <p>
                   Soluciones en AR para: <br />
                   <br />
-                  <ul>
-                    <li>Marketing</li>
-                    <li>Retail</li>
-                    <li>Operaciones industriales</li>
-                    <li>Lo que necesites</li>
-                  </ul>
                 </p>
+                <ul>
+                  <li>Marketing</li>
+                  <li>Retail</li>
+                  <li>Operaciones industriales</li>
+                  <li>Lo que necesites</li>
+                </ul>
 
                 <ContactButton text="¡Únete al futuro!" />
               </div>
@@ -127,22 +127,6 @@ const AR = props => {
             </div>
           </Element>
         </Section>
-
-        {/* <Section updateSectionsState={updateSectionsState} id="Éxito">
-          <Element className="section" name="Éxito">
-            <h1>Cleverit XR</h1>
-            <h3>AR</h3>
-            <br />
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Aspernatur hic cupiditate suscipit dignissimos praesentium quasi
-              at blanditiis tenetur modi ut, iusto perferendis nihil earum
-              impedit quaerat. Ipsum laudantium accusamus ipsa?
-            </p>
-            <br />
-            <ContactButton text="¡Únete al futuro!" />
-          </Element>
-        </Section> */}
 
         <Section updateSectionsState={updateSectionsState} id="Contacto">
           <Element className="section" name="Contacto">

@@ -33,6 +33,12 @@ const VR = props => {
   const [hiddenStyle, setHiddenStyle] = useState({});
   const [currentSection, setCurrentSection] = useState("us");
 
+  const [sectionsState, setSectionsState] = useState({
+    Nosotros: true,
+    Servicios: false,
+    Contacto: false,
+  });
+
   useEffect(() => {
     for (let section in sectionsState) {
       if (sectionsState[section]) {
@@ -40,12 +46,6 @@ const VR = props => {
       }
     }
   }, [sectionsState]);
-
-  const [sectionsState, setSectionsState] = useState({
-    Nosotros: true,
-    Servicios: false,
-    Contacto: false,
-  });
 
   const updateView = () => {
     setHiddenStyle({ visibility: "hidden" });
@@ -68,7 +68,7 @@ const VR = props => {
         <Section updateSectionsState={updateSectionsState} id="Nosotros">
           <Element className="section" name="Nosotros">
             <h1>Cleverit VR</h1>
-            <h3>Virutal Reality</h3>
+            <h3>Virtual Reality</h3>
             <br />
 
             <div id="us-content">
@@ -76,13 +76,13 @@ const VR = props => {
                 <p>
                   Soluciones en VR para: <br />
                   <br />
-                  <ul>
-                    <li>Operaciones industriales</li>
-                    <li>Marketing</li>
-                    <li>Videojuegos</li>
-                    <li>Cualquier mundo que te imagines</li>
-                  </ul>
                 </p>
+                <ul>
+                  <li>Operaciones industriales</li>
+                  <li>Marketing</li>
+                  <li>Videojuegos</li>
+                  <li>Cualquier mundo que te imagines</li>
+                </ul>
 
                 <ContactButton text="¡Únete al futuro!" />
               </div>

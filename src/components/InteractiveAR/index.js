@@ -6,7 +6,7 @@ import QR from "png/pattern-cxrqr-opacity-50.png";
 import "./styles.scss";
 
 const InteractiveAR = () => {
-  const [clicked, setClicked] = useState();
+  const [clicked, setClicked] = useState(true);
 
   if (isMobile) return null;
 
