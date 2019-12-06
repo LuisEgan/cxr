@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import "./styles.scss";
 
 const Button = props => {
-  const { text, onClick } = props;
+  const { text, onClick, disabled } = props;
 
   const button = useRef();
 
@@ -58,7 +58,11 @@ const Button = props => {
   }, [button]);
 
   return (
-    <div className="button-center" onClick={onClick} ref={button}>
+    <div
+      className={`button-center ${disabled ? "disabled" : ""}`}
+      onClick={onClick}
+      ref={button}
+    >
       <span className="button">{text}</span>
     </div>
   );
@@ -66,6 +70,7 @@ const Button = props => {
 
 Button.propTypes = {
   text: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {};

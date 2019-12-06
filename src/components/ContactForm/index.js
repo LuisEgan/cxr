@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
-import { loadReCaptcha, ReCaptcha } from "react-recaptcha-v3";
+import ReCAPTCHA from "react-google-recaptcha";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
@@ -82,12 +82,11 @@ const sendContactEmail = async (
 };
 
 const ContactForm = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
+  const [captcha, setCaptcha] = useState();
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
-  useEffect(() => {
-    loadReCaptcha("6LdghsYUAAAAAFX-4juh4moQqND7t2t-bh1JzK6t");
-  }, []);
+  let isButtonDisabled;
 
   return (
     <div id="contact-form-container">
@@ -100,62 +99,68 @@ const ContactForm = () => {
           setLoading(false);
         }}
       >
-        {({ isSubmitting }) => (
-          <Form>
-            <Field name="name">
-              {({ field, meta }) => {
-                return (
+        {({ isSubmitting }) => {
+          isButtonDisabled = isSubmitting || loading || !captcha;
+
+          return (
+            <Form>
+              <Field name="name">
+                {({ field, meta }) => {
+                  return (
+                    <Input
+                      {...field}
+                      error={meta.touched && meta.error}
+                      label="Nombre"
+                      margin="normal"
+                      variant="outlined"
+                    />
+                  );
+                }}
+              </Field>
+
+              <Field name="email">
+                {({ field, meta }) => (
                   <Input
                     {...field}
                     error={meta.touched && meta.error}
-                    label="Nombre"
+                    label="Email"
                     margin="normal"
                     variant="outlined"
                   />
-                );
-              }}
-            </Field>
+                )}
+              </Field>
 
-            <Field name="email">
-              {({ field, meta }) => (
-                <Input
-                  {...field}
-                  error={meta.touched && meta.error}
-                  label="Email"
-                  margin="normal"
-                  variant="outlined"
-                />
-              )}
-            </Field>
+              <Field name="message">
+                {({ field, meta }) => (
+                  <Input
+                    {...field}
+                    error={meta.touched && meta.error}
+                    label="Mensaje"
+                    margin="normal"
+                    variant="outlined"
+                    multiline
+                    rows="4"
+                  />
+                )}
+              </Field>
 
-            <Field name="message">
-              {({ field, meta }) => (
-                <Input
-                  {...field}
-                  error={meta.touched && meta.error}
-                  label="Mensaje"
-                  margin="normal"
-                  variant="outlined"
-                  multiline
-                  rows="4"
-                />
-              )}
-            </Field>
+              <ReCAPTCHA
+                sitekey="6LfQhsYUAAAAALZxJmKDQEE8J1oTpTh3ELnLNrG9"
+                onChange={e => setCaptcha(true)}
+              />
 
-            <ReCaptcha
-              sitekey="6LdghsYUAAAAAFX-4juh4moQqND7t2t-bh1JzK6t"
-              action="homepage"
-              verifyCallback={e => console.log(e)}
-            />
-
-            <div>
-              <button type="submit" disabled={isSubmitting || loading}>
-                <Button text={loading ? "Loading..." : "Contactar"} />
-              </button>
-              <span>{feedbackMessage}</span>
-            </div>
-          </Form>
-        )}
+              <div>
+                <button type="submit" disabled={isButtonDisabled}>
+                  <Button
+                    text={loading ? "Loading..." : "Contactar"}
+                    disabled={isButtonDisabled}
+                  />
+                </button>
+                <span>{feedbackMessage}</span>
+              </div>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );
