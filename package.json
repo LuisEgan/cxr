@@ -6,7 +6,7 @@
   "author": "Cleverit",
   "dependencies": {
     "@material-ui/core": "^4.6.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "formik": "^2.0.4",
     "gatsby": "^2.16.1",
     "gatsby-image": "^2.2.29",
